@@ -1,4 +1,4 @@
-# Important Notes: 
+# Important notes when deploying the contracts below: 
 # 1. Update the constants listed below with their appropriate values.
 # 2. Deplying PaintMarketplace contract is dependent on the contract address of
 #    a deployed PaintToken contract. So you must deploy PaintToken first
@@ -18,6 +18,10 @@ CONTRACT_METADATA_PATH = 'https://www.example.com'
 ADMIN_ADDRESS = sp.address('tz1fcNTRug7RXfixJWttCcReTVXSLt2UozSU')
 
 class PaintToken(FA2.Admin, FA2.MintNft, FA2.Fa2Nft):
+    '''
+    DO NOT directly interact with this contract. 
+    Use the endpoints of a deployed PaintMarketplace contract.
+    '''
     def __init__(self, admin, **kwargs):
         FA2.Fa2Nft.__init__(self, **kwargs)
         FA2.Admin.__init__(self, admin)
@@ -50,6 +54,7 @@ class PaintToken(FA2.Admin, FA2.MintNft, FA2.Fa2Nft):
                 del self.data.token_metadata[action.token_id]
 
 class PaintMarketplace(sp.Contract):
+    '''Use this contract to mint, buy, and burn NFT.'''
     def __init__(self, token, metadata, admin):
         self.init(
             token=token,
