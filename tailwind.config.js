@@ -19,6 +19,10 @@ module.exports = {
   },
   plugins: [require("@tailwindcss/typography"), require("daisyui")],
   daisyui: {
+<<<<<<< HEAD
     themes: ["light", "dark", "cupcake"],
+=======
+    themes: ["pastel"],
+>>>>>>> 0cfbdedd91fd464e8c2cd9efe2add7e70aa9351e
   },
 };
