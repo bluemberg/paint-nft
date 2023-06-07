@@ -23,22 +23,10 @@ export default function Header() {
               <label tabIndex={0} className="btn btn-circle btn-primary lg:hidden mr-1">
                 <i className='bi bi-list text-2xl'></i>
               </label>
-              <ul tabIndex={0} className="dropdown-content mt-1 w-52 menu menu-compact p-2 bg-base-200 shadow rounded-box">
-                <li><a href="#!">Home</a></li>
-                <li><a href="#!">Dashboard</a></li>
-                <li><a href="#!">Canvas</a></li>
-                <li><a href="#!">Marketplace</a></li>
-              </ul>
             </div>
             <a className="btn btn-ghost normal-case text-2xl">PaintNFT</a>
           </div>
           <div className="navbar-center hidden lg:flex">
-            <ul className="menu menu-horizontal p-0 font-medium">
-              <li><a href="#!">Home</a></li>
-              <li><a href="#!">Dashboard</a></li>
-              <li><a href="#!">Canvas</a></li>
-              <li><a href="#!">Marketplace</a></li>
-            </ul>
           </div>
           <div className="navbar-end">
             <div className="dropdown dropdown-end dropdown-hover">
