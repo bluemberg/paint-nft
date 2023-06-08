@@ -29,7 +29,7 @@ export default function Header() {
           <div className="navbar-center hidden lg:flex">
           </div>
           <div className="navbar-end">
-            <div className="dropdown dropdown-end dropdown-hover">
+            <div className="dropdown dropdown-end">
               <label tabIndex={0} className="btn">
                 {THEMES.length} Themes
               </label>
