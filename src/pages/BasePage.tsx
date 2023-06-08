@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import ScrollTop from "../components/ScrollTop";
 
 interface Props {
   children: React.ReactNode;
@@ -10,9 +11,12 @@ interface Props {
 const BasePage = (props: Props) => {
   return (
     <nav>
-      <Navbar></Navbar>
-      <div className="relative mb-16 min-h-screen">{props.children}</div>
-      <Footer></Footer>
+      <nav>
+        <Navbar></Navbar>
+        <div className="relative mb-16 min-h-screen">{props.children}</div>
+        <Footer></Footer>
+      </nav>
+      <ScrollTop></ScrollTop>
     </nav>
   );
 };
