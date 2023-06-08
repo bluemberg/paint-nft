@@ -1,7 +1,7 @@
 import React from "react";
 
 import Header from "./landing/Header";
-import Footer from "./landing/Footer";
+import Footer from "../components/Footer";
 
 const LandingPage = () => {
   return (
