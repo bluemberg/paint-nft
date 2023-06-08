@@ -11,6 +11,7 @@ const BasePage = (props: Props) => {
   return (
     <nav>
       <Navbar></Navbar>
+      <div className="relative mb-16 min-h-screen">{props.children}</div>
       <Footer></Footer>
     </nav>
   );
