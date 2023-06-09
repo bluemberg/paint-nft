@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const THEMES = ["dark", "light", "cupcake", "cyberpunk"];
 
@@ -24,20 +25,20 @@ export default function Header() {
                 <i className='bi bi-list text-2xl'></i>
               </label>
               <ul tabIndex={0} className="dropdown-content mt-1 w-52 menu menu-compact p-2 bg-base-200 shadow rounded-box">
-                <li><a href="#!">Home</a></li>
-                <li><a href="#!">Dashboard</a></li>
-                <li><a href="#!">Canvas</a></li>
-                <li><a href="#!">Marketplace</a></li>
+                <li><Link to="/dashboard">Home</Link></li>
+                <li><Link to="/dashboard">Dashboard</Link></li>
+                <li><Link to="/canvas">Canvas</Link></li>
+                <li><Link to="/marketplace">Marketplace</Link></li>
               </ul>
             </div>
             <a className="btn btn-ghost normal-case text-2xl">PaintNFT</a>
           </div>
           <div className="navbar-center hidden lg:flex">
             <ul className="menu menu-horizontal p-0 font-medium">
-              <li><a href="#!">Home</a></li>
-              <li><a href="#!">Dashboard</a></li>
-              <li><a href="#!">Canvas</a></li>
-              <li><a href="#!">Marketplace</a></li>
+                <li><Link to="/dashboard">Home</Link></li>
+                <li><Link to="/dashboard">Dashboard</Link></li>
+                <li><Link to="/canvas">Canvas</Link></li>
+                <li><Link to="/marketplace">Marketplace</Link></li>
             </ul>
           </div>
           <div className="navbar-end">
