@@ -22,7 +22,7 @@ export default function Footer() {
   return (
     <footer className='bg-base-200 text-base-content '>
       <div className='container '>
-        <div className="footer py-10 md:py-16 grid-cols-2 sm:grid-cols-4 lg:grid-cols-auto">
+        {/* <div className="footer py-10 text-center md:py-16 sm:grid-cols-3 lg:grid-cols-auto">
           <div>
             <span className="footer-title">Solutions</span>
             <a href="#!" className="link link-hover">Marketing</a>
@@ -34,20 +34,8 @@ export default function Footer() {
           <div>
             <span className="footer-title">Company</span>
             <a href="#!" className="link link-hover">About us</a>
-            <a href="#!" className="link link-hover">Contact</a>
           </div>
-          <div className='w-full col-span-full md:col-auto'>
-            <div className="form-control w-full">
-              <label className="label">
-                <span className="label-text">Enter your email address</span>
-              </label>
-              <div className="relative">
-                <input type="text" placeholder="user@site.com" className="input input-bordered w-full pr-16" />
-                <button className="btn btn-primary absolute top-0 right-0 rounded-l-none">Subscribe</button>
-              </div>
-            </div>
-          </div>
-        </div>
+        </div> */}
 
         <div className='flex flex-col sm:flex-row items-center border-t border-base-300 py-4 gap-2'>
           <div className="flex-grow text-center sm:text-start">

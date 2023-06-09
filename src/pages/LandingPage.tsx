@@ -1,13 +1,21 @@
 import React from "react";
 
 import Header from "./landing/Header";
-import Footer from "./landing/Footer";
+import Hero from "./landing/Hero";
+import Footer from "../components/Footer";
+import Info from "./landing/Info";
+import ScrollTop from "../components/ScrollTop";
 
 const LandingPage = () => {
   return (
     <nav>
-      <Header></Header>
-      <Footer></Footer>
+      <nav>
+        <Header></Header>
+        <Hero></Hero>
+        <Info></Info>
+        <Footer></Footer>
+      </nav>
+      <ScrollTop></ScrollTop>
     </nav>
   );
 };
