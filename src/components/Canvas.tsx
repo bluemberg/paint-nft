@@ -415,37 +415,45 @@ const Canvas = () => {
           </div>
           <div className="col-span-1 select-none p-2">
             <div className="mt-3 mb-8">
-              <button
-                className={
-                  "btn btn-outline" + (mode === "stroke" ? " btn-active" : "")
-                }
-                onClick={() => setMode("stroke")}
-                title="Brush"
-              >
-                <span className="material-symbols-outlined">format_paint</span>
-              </button>
+              <div className="tooltip" data-tip="Paint">
+                <button
+                  className={
+                    "btn btn-circle btn-outline" +
+                    (mode === "stroke" ? " btn-active" : "")
+                  }
+                  onClick={() => setMode("stroke")}
+                >
+                  <span className="material-symbols-outlined">
+                    format_paint
+                  </span>
+                </button>
+              </div>
             </div>
             <div className="my-8">
-              <button
-                className={
-                  "btn btn-outline" + (mode === "erase" ? " btn-active" : "")
-                }
-                onClick={() => setMode("erase")}
-                title="Eraser"
-              >
-                <span className="material-symbols-outlined">ink_eraser</span>
-              </button>
+              <div className="tooltip" data-tip="Erase">
+                <button
+                  className={
+                    "btn btn-circle btn-outline" +
+                    (mode === "erase" ? " btn-active" : "")
+                  }
+                  onClick={() => setMode("erase")}
+                >
+                  <span className="material-symbols-outlined">ink_eraser</span>
+                </button>
+              </div>
             </div>
             <div className="my-8 hidden">
-              <button
-                className={
-                  "btn btn-outline" + (mode === "square" ? " btn-active" : "")
-                }
-                onClick={() => setMode("square")}
-                title="Square"
-              >
-                <span className="material-symbols-outlined">square</span>
-              </button>
+              <div className="tooltip" data-tip="Square">
+                <button
+                  className={
+                    "btn btn-circle btn-outline" +
+                    (mode === "square" ? " btn-active" : "")
+                  }
+                  onClick={() => setMode("square")}
+                >
+                  <span className="material-symbols-outlined">square</span>
+                </button>
+              </div>
             </div>
             <div className="my-8">
               <button className="btn btn-primary" onClick={() => undo()}>

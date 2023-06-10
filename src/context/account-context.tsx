@@ -1,21 +1,23 @@
-import { createContext, useState, Dispatch, SetStateAction } from "react";
+import { createContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { wallet, tezos, connectWallet } from "../utils/wallet";
 
 interface AccountContextType {
   address: string;
   balance: number;
   isConnected: boolean;
-  setAddress: Dispatch<SetStateAction<string>>;
-  setBalance: Dispatch<SetStateAction<number>>;
-  setIsConnected: Dispatch<SetStateAction<boolean>>;
+  fetchAccount: () => Promise<boolean>;
+  connect: () => Promise<void>;
+  disconnect: () => Promise<void>;
 }
 
 const context: AccountContextType = {
   address: "",
   balance: 0,
   isConnected: false,
-  setAddress: () => {},
-  setBalance: () => {},
-  setIsConnected: () => {},
+  fetchAccount: async () => false,
+  connect: async () => {},
+  disconnect: async () => {},
 };
 
 const AccountContext = createContext(context);
@@ -29,13 +31,46 @@ export const AccountContextProvider: React.FC<Props> = (props) => {
   const [balance, setBalance] = useState(0);
   const [isConnected, setIsConnected] = useState(false);
 
+  const navigate = useNavigate();
+
+  // returns true if fetching is successful (i.e. account is connected)
+  const fetchAccount = async () => {
+    const activeAccount = await wallet.client.getActiveAccount();
+    if (activeAccount) {
+      const accountAddress = activeAccount.address;
+      const accountBalance = await tezos.tz.getBalance(accountAddress);
+
+      setAddress(accountAddress);
+      setBalance(accountBalance.toNumber());
+      setIsConnected(true);
+      return true;
+    } else {
+      disconnect();
+      return false;
+    }
+  };
+
+  const connect = async () => {
+    await connectWallet();
+    await fetchAccount();
+    navigate("/dashboard");
+  };
+
+  const disconnect = async () => {
+    await wallet.clearActiveAccount();
+    setAddress("");
+    setBalance(0);
+    setIsConnected(false);
+    navigate("/");
+  };
+
   const context: AccountContextType = {
     address,
     balance,
     isConnected,
-    setAddress,
-    setBalance,
-    setIsConnected,
+    fetchAccount,
+    connect,
+    disconnect,
   };
 
   return (
