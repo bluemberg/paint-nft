@@ -1,6 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import { LazyBrush, Point } from "lazy-brush";
 import { getCatenaryCurve, drawResult } from "catenary-curve";
+import MintModal from "./MintModal";
 
 interface Stroke {
   points: Point[];
@@ -12,19 +13,24 @@ interface Stroke {
 const Canvas = () => {
   /* 
   Canvases:
-  1. canvasMain (what is actually saved and will be minted)
-  2. canvasDraw (where all the strokes are drawn)
-  3. canvasTemp (where currStroke is drawn)
-  4. canvasCursor (where the cursor is drawn)
+  1. canvasNft (= canvasBg + canvasDraw; this is what will be minted)
+  2. canvasBg (background canvas)
+  3. canvasDraw (where all the strokes are drawn)
+  4. canvasTemp (where currStroke is drawn)
+  5. canvasCursor (where the cursor is drawn)
   */
 
-  const canvasMainRef = useRef<HTMLCanvasElement>(null);
+  const canvasNftRef = useRef<HTMLCanvasElement>(null);
+  const canvasBgRef = useRef<HTMLCanvasElement>(null);
   const canvasDrawRef = useRef<HTMLCanvasElement>(null);
   const canvasTempRef = useRef<HTMLCanvasElement>(null);
   const canvasCursorRef = useRef<HTMLCanvasElement>(null);
 
+  const containerRef = useRef<HTMLDivElement>(null);
+
   const canvasesRef = [
-    canvasMainRef,
+    canvasNftRef,
+    canvasBgRef,
     canvasDrawRef,
     canvasTempRef,
     canvasCursorRef,
@@ -103,10 +109,12 @@ const Canvas = () => {
   useEffect(() => {
     if (canvasesRef.every((canvasRef) => canvasRef.current)) {
       for (let canvasRef of canvasesRef) {
-        const rect = canvasRef.current?.getBoundingClientRect();
-        canvasRef.current!.width = rect?.width || 0;
-        canvasRef.current!.height = (4 / 5) * (rect?.width || 0);
+        const rect = canvasRef.current!.getBoundingClientRect()!;
+        canvasRef.current!.width = rect.width;
+        canvasRef.current!.height = (4 / 5) * rect.width;
       }
+      containerRef.current!.style.height =
+        canvasBgRef.current!.height + 14 + "px";
       setCanvasesReady(true);
       const lazyBrush = new LazyBrush({
         enabled: true,
@@ -157,9 +165,9 @@ const Canvas = () => {
   };
 
   const changeCanvasBG = () => {
-    const mainCtx = canvasMainRef.current!.getContext("2d")!;
-    mainCtx.fillStyle = canvasColor;
-    mainCtx.fillRect(0, 0, mainCtx.canvas.width, mainCtx.canvas.height);
+    const bgCtx = canvasBgRef.current!.getContext("2d")!;
+    bgCtx.fillStyle = canvasColor;
+    bgCtx.fillRect(0, 0, bgCtx.canvas.width, bgCtx.canvas.height);
 
     // redraw all strokes
     const drawCtx = canvasDrawRef.current!.getContext("2d")!;
@@ -289,13 +297,16 @@ const Canvas = () => {
 
   return (
     <>
-      <div className="container py-2 my-2 mx-auto text-center">
+      <div
+        className="container py-2 my-2 mx-auto text-center"
+        ref={containerRef}
+      >
         <div className="grid grid-cols-10 ">
           <div className="w-full col-span-1 p-2 select-none">
             <div className="my-3 ">
               <label className="block">Canvas Color</label>
               <button
-                className="btn btn-circle btn-outline border"
+                className="btn btn-square btn-outline border"
                 onClick={() => {
                   inputCanvasColorRef.current?.click();
                 }}
@@ -314,7 +325,7 @@ const Canvas = () => {
             <div className="my-3">
               <label className="block">Stroke Color</label>
               <button
-                className="btn btn-circle btn-outline border"
+                className="btn btn-square btn-outline border"
                 onClick={() => {
                   inputStrokeColorRef.current?.click();
                 }}
@@ -333,7 +344,7 @@ const Canvas = () => {
             <div className="my-3 hidden">
               <label className="block">Fill Color</label>
               <button
-                className="btn btn-circle btn-outline border"
+                className="btn btn-square btn-outline border"
                 onClick={() => {
                   inputFillColorRef.current?.click();
                 }}
@@ -394,8 +405,12 @@ const Canvas = () => {
           </div>
           <div className="col-span-8 relative">
             <canvas
+              className="border w-full absolute cursor-pointer invisible"
+              ref={canvasNftRef}
+            ></canvas>
+            <canvas
               className="border w-full absolute cursor-pointer"
-              ref={canvasMainRef}
+              ref={canvasBgRef}
             ></canvas>
             <canvas
               className="border w-full absolute cursor-pointer"
@@ -418,7 +433,7 @@ const Canvas = () => {
               <div className="tooltip" data-tip="Paint">
                 <button
                   className={
-                    "btn btn-circle btn-outline" +
+                    "btn btn-square btn-outline" +
                     (mode === "stroke" ? " btn-active" : "")
                   }
                   onClick={() => setMode("stroke")}
@@ -433,7 +448,7 @@ const Canvas = () => {
               <div className="tooltip" data-tip="Erase">
                 <button
                   className={
-                    "btn btn-circle btn-outline" +
+                    "btn btn-square btn-outline" +
                     (mode === "erase" ? " btn-active" : "")
                   }
                   onClick={() => setMode("erase")}
@@ -446,7 +461,7 @@ const Canvas = () => {
               <div className="tooltip" data-tip="Square">
                 <button
                   className={
-                    "btn btn-circle btn-outline" +
+                    "btn btn-square btn-outline" +
                     (mode === "square" ? " btn-active" : "")
                   }
                   onClick={() => setMode("square")}
@@ -470,6 +485,13 @@ const Canvas = () => {
             </div>
           </div>
         </div>
+      </div>
+      <div className="container text-center">
+        <MintModal
+          canvasNftRef={canvasNftRef}
+          canvasBgRef={canvasBgRef}
+          canvasDrawRef={canvasDrawRef}
+        ></MintModal>
       </div>
     </>
   );
