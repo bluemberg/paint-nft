@@ -2,6 +2,7 @@ import React, { useEffect, useContext, useRef } from "react";
 import axios from "axios";
 
 import AccountContext from "../context/account-context";
+import { mintNft } from "../utils/operations";
 
 interface Props {
   canvasNftRef: React.RefObject<HTMLCanvasElement>;
@@ -93,7 +94,6 @@ const MintModal = ({ canvasNftRef, canvasBgRef, canvasDrawRef }: Props) => {
   };
 
   const getUri = (ipfsHash: string) => {
-    // need to convert this to bytes
     return `https://ipfs.io/ipfs/${ipfsHash}`;
   };
 
@@ -176,6 +176,9 @@ const MintModal = ({ canvasNftRef, canvasBgRef, canvasDrawRef }: Props) => {
       const pinTokenMetadataRes = await pinTokenMetadata(tokenMetadata);
       if (pinTokenMetadataRes.status === 200) {
         // call the mint entry point
+        const tokenMetadataUri = getUri(pinTokenMetadataRes.data.IpfsHash);
+        const price = parseInt(inputPriceRef.current?.value || "0");
+        mintNft(tokenMetadataUri, price);
       }
     }
   };
