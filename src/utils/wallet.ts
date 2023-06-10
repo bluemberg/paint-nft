@@ -17,18 +17,3 @@ export const connectWallet = async () => {
     network: { type: network, rpcUrl: rpcUrl },
   });
 };
-
-// export const disconnectWallet = async () => {
-//   await wallet.clearActiveAccount();
-//   const accountContext = useContext(AccountContext);
-//   const walletContext = useContext(WalletContext);
-//   if (walletContext.wallet) {
-//     await walletContext.wallet.clearActiveAccount();
-//   }
-//   accountContext.setAddress("");
-//   accountContext.setIsConnected(false);
-//   accountContext.setBalance(0);
-
-//   walletContext.setWallet(null);
-//   walletContext.setBeaconConnection(false);
-// };
