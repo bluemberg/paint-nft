@@ -1,0 +1,62 @@
+[
+  {
+    "title": "Title 1",
+    "author": "Author 1",
+    "price": 0.5,
+    "uri": "https://images.barrons.com/im-394091?width=1280&size=1"
+  },
+  {
+    "title": "Title 2",
+    "author": "Author 2",
+    "price": 1.2,
+    "uri": "https://i.guim.co.uk/img/media/ef8492feb3715ed4de705727d9f513c168a8b196/37_0_1125_675/master/1125.jpg?width=1200&height=1200&quality=85&auto=format&fit=crop&s=d456a2af571d980d8b2985472c262b31"
+  },
+  {
+    "title": "Title 3",
+    "author": "Author 3",
+    "price": 2.8,
+    "uri": "https://i.pinimg.com/originals/90/02/25/90022597bc0ffb8f41e895f3c22b26eb.jpg"
+  },
+  {
+    "title": "Title 4",
+    "author": "Author 4",
+    "price": 0.9,
+    "uri": "https://example.com/nft/4"
+  },
+  {
+    "title": "Title 5",
+    "author": "Author 5",
+    "price": 1.5,
+    "uri": "https://example.com/nft/5"
+  },
+  {
+    "title": "Title 6",
+    "author": "Author 6",
+    "price": 0.7,
+    "uri": "https://example.com/nft/6"
+  },
+  {
+    "title": "Title 7",
+    "author": "Author 7",
+    "price": 2.3,
+    "uri": "https://example.com/nft/7"
+  },
+  {
+    "title": "Title 8",
+    "author": "Author 8",
+    "price": 1.8,
+    "uri": "https://example.com/nft/8"
+  },
+  {
+    "title": "Title 9",
+    "author": "Author 9",
+    "price": 0.3,
+    "uri": "https://example.com/nft/9"
+  },
+  {
+    "title": "Title 10",
+    "author": "Author 10",
+    "price": 2.1,
+    "uri": "https://example.com/nft/10"
+  }
+]
