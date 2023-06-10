@@ -1,5 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useContext, useRef } from "react";
 import axios from "axios";
+
+import AccountContext from "../context/account-context";
 
 interface Props {
   canvasNftRef: React.RefObject<HTMLCanvasElement>;
@@ -7,7 +9,38 @@ interface Props {
   canvasDrawRef: React.RefObject<HTMLCanvasElement>;
 }
 
+interface Format {
+  uri: string;
+  hash: string;
+  mimeType: string; // always "image/png" in our case
+  dimensions: { value: string; unit: string };
+  fileSize: number;
+}
+
+interface TokenMetadata {
+  name: string;
+  symbol?: string; // should be always empty in our case
+  decimals: number; // always 0 for NFTs
+  artifactUri: string;
+  displayUri: string;
+  thumbnailUri: string;
+  description: string;
+  minter: string;
+  creators: string[];
+  isBooleanAmount: boolean; // always true for NFTs
+  formats: Format[];
+  tags: string[];
+}
+
 const MintModal = ({ canvasNftRef, canvasBgRef, canvasDrawRef }: Props) => {
+  const accountContext = useContext(AccountContext);
+
+  const inputTitleRef = useRef<HTMLInputElement>(null);
+  const inputDescriptionRef = useRef<HTMLTextAreaElement>(null);
+  const inputCreatorsRef = useRef<HTMLTextAreaElement>(null);
+  const inputTagsRef = useRef<HTMLTextAreaElement>(null);
+  const inputPriceRef = useRef<HTMLInputElement>(null);
+
   /*
   Minting process: 
   1. Pin the image data to Pinata.
@@ -59,11 +92,93 @@ const MintModal = ({ canvasNftRef, canvasBgRef, canvasDrawRef }: Props) => {
       });
   };
 
-  const generateTokenMetadata = () => {};
+  const getUri = (ipfsHash: string) => {
+    // need to convert this to bytes
+    return `https://ipfs.io/ipfs/${ipfsHash}`;
+  };
 
-  const pinTokenMetadata = () => {};
+  const generateTokenMetadata = (
+    ipfsHash: string,
+    pinSize: number,
+    timestamp: string
+  ) => {
+    const creators = inputCreatorsRef.current?.value
+      .split(",")
+      .map((name: string) => name.trim());
+    const tags = inputTagsRef.current?.value
+      .split(",")
+      .map((name: string) => name.trim());
+    const dimension = `${canvasNftRef.current!.width}x${
+      canvasNftRef.current!.height
+    }`;
+    return {
+      name: inputTitleRef.current?.value || "",
+      // symbol, // this is not required for NFTs
+      decimals: 0,
+      artifactUri: getUri(ipfsHash),
+      displayUri: getUri(ipfsHash),
+      thumbnailUri: getUri(ipfsHash),
+      description: inputDescriptionRef.current?.value || "",
+      minter: accountContext.address,
+      creators: creators || [],
+      isBooleanAmount: true,
+      formats: [
+        {
+          uri: getUri(ipfsHash),
+          hash: ipfsHash,
+          mimeType: "image/png",
+          dimensions: { value: dimension, unit: "px" },
+          fileSize: pinSize,
+        },
+      ],
+      tags: tags || [],
+      date: timestamp,
+    };
+  };
 
-  const mint = () => {};
+  const pinTokenMetadata = async (tokenMetadata: TokenMetadata) => {
+    const data = JSON.stringify({
+      pinataOptions: {
+        cidVersion: 0,
+        wrapWithDirectory: false,
+      },
+      pinataContent: tokenMetadata,
+    });
+
+    return axios({
+      method: "post",
+      url: "https://api.pinata.cloud/pinning/pinJSONToIPFS",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${process.env.REACT_APP_PINATA_JWT}`,
+      },
+      data: data,
+    })
+      .then((response) => {
+        console.log(response);
+        return response;
+      })
+      .catch((error) => {
+        console.log(error);
+        return error;
+      });
+  };
+
+  const mint = async () => {
+    const pinNftRes = await pinNft();
+    if (pinNftRes.status === 200) {
+      const tokenMetadata = generateTokenMetadata(
+        pinNftRes.data.IpfsHash,
+        pinNftRes.data.PinSize,
+        pinNftRes.data.Timestamp
+      );
+
+      const pinTokenMetadataRes = await pinTokenMetadata(tokenMetadata);
+      if (pinTokenMetadataRes.status === 200) {
+        // call the mint entry point
+      }
+    }
+  };
 
   return (
     <>
@@ -74,12 +189,73 @@ const MintModal = ({ canvasNftRef, canvasBgRef, canvasDrawRef }: Props) => {
       <div className="modal">
         <div className="modal-box">
           <h3 className="font-bold text-lg">Mint your NFT.</h3>
-          <p className="py-4">This modal works with a hidden checkbox!</p>
+          <div className="p-1">
+            <div className="form-control w-full">
+              <label className="label">
+                <span className="label-text">Title of your NFT.</span>
+              </label>
+              <input
+                type="text"
+                placeholder="Title"
+                className="input input-bordered w-full"
+                ref={inputTitleRef}
+              />
+            </div>
+          </div>
+          <div className="p-1">
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Description of your NFT.</span>
+              </label>
+              <textarea
+                className="textarea textarea-bordered h-24"
+                placeholder="Description"
+                ref={inputDescriptionRef}
+              ></textarea>
+            </div>
+          </div>
+          <div className="p-1">
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Creators.</span>
+              </label>
+              <textarea
+                className="textarea textarea-bordered h-24"
+                placeholder="Creators (separated by comma)"
+                ref={inputCreatorsRef}
+              ></textarea>
+            </div>
+          </div>
+          <div className="p-1">
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Tags.</span>
+              </label>
+              <textarea
+                className="textarea textarea-bordered h-24"
+                placeholder="Tags (separated by comma)"
+                ref={inputTagsRef}
+              ></textarea>
+            </div>
+          </div>
+          <div className="p-1">
+            <div className="form-control w-full">
+              <label className="label">
+                <span className="label-text">Price of your NFT.</span>
+              </label>
+              <input
+                type="number"
+                placeholder="Price in mutez"
+                className="input input-bordered w-full"
+                ref={inputPriceRef}
+              />
+            </div>
+          </div>
           <div className="modal-action">
             <label
               htmlFor="my_modal_6"
               className="btn btn-primary"
-              onClick={() => pinNft()}
+              onClick={() => mint()}
             >
               Mint
             </label>
