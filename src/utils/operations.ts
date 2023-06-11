@@ -8,7 +8,7 @@ export const mintNft = async (tokenMetadataUri: string, price: number) => {
     const op = await marketplace.methods
       .mint_nft(price, char2Bytes(tokenMetadataUri))
       .send();
-    await op.confirmation(1);
+    await op.confirmation(3);
   } catch (err) {
     throw err;
   }

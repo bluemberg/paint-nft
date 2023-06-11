@@ -1,5 +1,6 @@
 import React, { useEffect, useContext, useRef } from "react";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 import AccountContext from "../context/account-context";
 import { mintNft } from "../utils/operations";
@@ -178,7 +179,7 @@ const MintModal = ({ canvasNftRef, canvasBgRef, canvasDrawRef }: Props) => {
         // call the mint entry point
         const tokenMetadataUri = getUri(pinTokenMetadataRes.data.IpfsHash);
         const price = parseInt(inputPriceRef.current?.value || "0");
-        mintNft(tokenMetadataUri, price);
+        await mintNft(tokenMetadataUri, price);
       }
     }
   };
@@ -258,7 +259,13 @@ const MintModal = ({ canvasNftRef, canvasBgRef, canvasDrawRef }: Props) => {
             <label
               htmlFor="my_modal_6"
               className="btn btn-primary"
-              onClick={() => mint()}
+              onClick={() =>
+                toast.promise(mint(), {
+                  loading: "Minting NFT",
+                  success: "Successfully minted!",
+                  error: "Error when minting.",
+                })
+              }
             >
               Mint
             </label>

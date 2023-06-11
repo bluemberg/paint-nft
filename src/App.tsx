@@ -1,5 +1,6 @@
 import React from "react";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
+import { Toaster } from "react-hot-toast";
 
 import LandingPage from "./pages/LandingPage";
 import DashboardPage from "./pages/DashboardPage";
@@ -12,6 +13,7 @@ import { MarketplaceContextProvider } from "./context/marketplace-context";
 const App = () => {
   return (
     <>
+      <Toaster position="top-center" reverseOrder={false} />
       <BrowserRouter>
         <AccountContextProvider>
           <MarketplaceContextProvider>
