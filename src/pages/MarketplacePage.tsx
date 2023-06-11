@@ -1,25 +1,38 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import BasePage from "./BasePage";
+import toast from "react-hot-toast";
 
-import data from './dummy.json'
+import { TokenMetadata } from "../components/MintModal";
+import { fetchCollectableNfts } from "../utils/tzkt";
 
-interface dummy_nft {
-  uri: string;
-  title: string;
+interface NFT {
+  amount: string;
   author: string;
-  price: number;
+  collectable: boolean;
+  holder: string;
+  token_id: string;
+  token_info: TokenMetadata;
 }
 
 const MarketplacePage = () => {
-  const [selectedNft, setSelectedNft] = useState<dummy_nft | null>(null);
+  const [selectedNft, setSelectedNft] = useState<NFT | null>(null);
+  const [nfts, setNfts] = useState<NFT[]>([]);
 
-  const openModal = (nft: dummy_nft) => {
+  const openModal = (nft: NFT) => {
     setSelectedNft(nft);
   };
 
   const closeModal = () => {
     setSelectedNft(null);
   };
+
+  useEffect(() => {
+    (async () => {
+      // these are all the NFTs that need to be displayed to this page
+      const nfts = await fetchCollectableNfts();
+      setNfts(nfts);
+    })();
+  }, []);
 
   return (
     <BasePage>
@@ -28,16 +41,24 @@ const MarketplacePage = () => {
       {/* GRID OF NFTS */}
       <div className="flex justify-center items-center h-full px-4">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mt-8">
-          {data.map((nft, index) => (
+          {nfts.map((nft: NFT, index) => (
             <div
               key={index}
               className="bg-white border border-gray-200 rounded-lg p-4 cursor-pointer hover:shadow-lg"
               onClick={() => openModal(nft)}
             >
-              <img src={nft.uri} alt={nft.title} className="mb-4 rounded-lg" />
-              <h2 className="text-lg font-semibold mb-2">{nft.title}</h2>
-              <p className="text-gray-600 mb-1">Author: {nft.author}</p>
-              <p className="text-gray-600 mb-1">Price: {nft.price}</p>
+              <img
+                src={nft.token_info.artifactUri}
+                alt={nft.token_info.name}
+                className="mb-4 rounded-lg"
+              />
+              <h2 className="text-lg font-semibold mb-2">
+                {nft.token_info.name}
+              </h2>
+              <p className="text-gray-600 mb-1">
+                Author: {nft.token_info.minter}
+              </p>
+              <p className="text-gray-600 mb-1">Price: {nft.amount}</p>
             </div>
           ))}
         </div>
@@ -53,12 +74,23 @@ const MarketplacePage = () => {
             >
               Close
             </button>
-            <img src={selectedNft.uri} alt={selectedNft.title} className="mb-4 rounded-lg" />
-            <h2 className="text-lg font-semibold mb-2">{selectedNft.title}</h2>
-            <p className="text-gray-600 mb-1">Author: {selectedNft.author}</p>
-            <p className="text-gray-600 mb-1">Price: {selectedNft.price}</p>
+            <img
+              src={selectedNft.token_info.artifactUri}
+              alt={selectedNft.token_info.name}
+              className="mb-4 rounded-lg"
+            />
+            <h2 className="text-lg font-semibold mb-2">
+              {selectedNft.token_info.name}
+            </h2>
+            <p className="text-gray-600 mb-1">
+              Author: {selectedNft.token_info.minter}
+            </p>
+            <p className="text-gray-600 mb-1">Price: {selectedNft.amount}</p>
             <div className="flex justify-end">
-              <button className="bg-red-500 text-white py-2 px-4 rounded mr-2" onClick={closeModal}>
+              <button
+                className="bg-red-500 text-white py-2 px-4 rounded mr-2"
+                onClick={closeModal}
+              >
                 Close
               </button>
               <button className="bg-blue-500 text-white py-2 px-4 rounded">

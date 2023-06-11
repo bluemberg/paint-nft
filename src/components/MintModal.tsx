@@ -19,7 +19,7 @@ interface Format {
   fileSize: number;
 }
 
-interface TokenMetadata {
+export interface TokenMetadata {
   name: string;
   symbol?: string; // should be always empty in our case
   decimals: number; // always 0 for NFTs

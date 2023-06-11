@@ -13,3 +13,7 @@ export const mintNft = async (tokenMetadataUri: string, price: number) => {
     throw err;
   }
 };
+
+// TODO
+export const burnNft = () => {};
+export const buyNft = () => {};
