@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import BasePage from "./BasePage";
 import toast from "react-hot-toast";
 
 import { TokenMetadata } from "../components/MintModal";
 import { fetchCollectableNfts } from "../utils/tzkt";
+import AccountContext from "../context/account-context";
+import { buyNft } from "../utils/operations";
 
-interface NFT {
+export interface NFT {
   amount: string;
   author: string;
   collectable: boolean;
@@ -18,6 +20,8 @@ const MarketplacePage = () => {
   const [selectedNft, setSelectedNft] = useState<NFT | null>(null);
   const [nfts, setNfts] = useState<NFT[]>([]);
 
+  const accountContext = useContext(AccountContext);
+
   const openModal = (nft: NFT) => {
     setSelectedNft(nft);
   };
@@ -27,11 +31,18 @@ const MarketplacePage = () => {
   };
 
   useEffect(() => {
-    (async () => {
-      // these are all the NFTs that need to be displayed to this page
-      const nfts = await fetchCollectableNfts();
-      setNfts(nfts);
-    })();
+    toast.promise(
+      (async () => {
+        // these are all the NFTs that need to be displayed to this page
+        const nfts = await fetchCollectableNfts();
+        setNfts(nfts);
+      })(),
+      {
+        loading: "Loading NFTs.",
+        success: "Successfully loaded all NFTs!",
+        error: "Error retrieving NFTs.",
+      }
+    );
   }, []);
 
   return (
@@ -88,12 +99,32 @@ const MarketplacePage = () => {
             <p className="text-gray-600 mb-1">Price: {selectedNft.amount}</p>
             <div className="flex justify-end">
               <button
-                className="bg-red-500 text-white py-2 px-4 rounded mr-2"
+                className="btn btn-secondary py-2 px-4 rounded mr-2"
                 onClick={closeModal}
               >
                 Close
               </button>
-              <button className="bg-blue-500 text-white py-2 px-4 rounded">
+              <button
+                className={
+                  "btn  text-white py-2 px-4 rounded " +
+                  (selectedNft.token_info.minter === accountContext.address
+                    ? "btn-disabled"
+                    : "btn-primary")
+                }
+                onClick={() =>
+                  toast.promise(
+                    buyNft(
+                      parseInt(selectedNft.token_id),
+                      parseInt(selectedNft.amount) + 10_00000 // one 1 tez to the price for gas fee
+                    ),
+                    {
+                      loading: "Buying NFT.",
+                      success: "Successfully bought NFT!",
+                      error: "Error buying NFT.",
+                    }
+                  )
+                }
+              >
                 Buy
               </button>
             </div>

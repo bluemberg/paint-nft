@@ -51,4 +51,6 @@ export const fetchCollectableNfts = async () => {
   return collectableNfts;
 };
 
+// users can burn the NFTs they hold
+// thus we need to fetch their personal NFTs
 export const fetchPersonalNfts = async () => {};

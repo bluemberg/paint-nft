@@ -14,6 +14,26 @@ export const mintNft = async (tokenMetadataUri: string, price: number) => {
   }
 };
 
-// TODO
-export const burnNft = () => {};
-export const buyNft = () => {};
+export const buyNft = async (tokenId: number, amount: number) => {
+  try {
+    console.log(amount);
+    const marketplace = await tezos.wallet.at(marketplaceAddr);
+    const op = await marketplace.methods.buy_nft(tokenId).send({
+      amount,
+      mutez: true,
+    });
+    await op.confirmation(3);
+  } catch (err) {
+    throw err;
+  }
+};
+
+export const burnNft = async (tokenId: number) => {
+  try {
+    const marketplace = await tezos.wallet.at(marketplaceAddr);
+    const op = await marketplace.methods.burn_nft(tokenId).send();
+    await op.confirmation(3);
+  } catch (err) {
+    throw err;
+  }
+};
