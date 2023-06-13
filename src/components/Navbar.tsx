@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import AccountContext from "../context/account-context";
 
-const THEMES = ["dark", "light", "cupcake", "cyberpunk"];
+const THEMES = ["light", "dark", "cupcake", "cyberpunk"];
 
 export default function Header() {
   const accountContext = useContext(AccountContext);

@@ -28,6 +28,6 @@ module.exports = {
   plugins: [require("@tailwindcss/typography"), require("daisyui")],
   daisyui: {
     styled: true,
-    themes: ["dark", "light", "cupcake", "pastel", "cyberpunk"],
+    themes: ["light", "dark", "cupcake", "pastel", "cyberpunk"],
   },
 };
