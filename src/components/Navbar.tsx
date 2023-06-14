@@ -11,7 +11,14 @@ export default function Header() {
   const [theme, setTheme] = React.useState("cupcake");
 
   React.useEffect(() => {
+    const savedTheme = localStorage.getItem('data-theme')!;
+    setTheme(savedTheme);
+  }, []);
+
+  React.useEffect(() => {
     document.documentElement.setAttribute("data-theme", theme);
+    console.log("Hi");
+    localStorage.setItem('data-theme', theme)
   }, [theme]);
 
   const handleThemeChange = (e: any) => {
