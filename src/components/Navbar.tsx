@@ -8,7 +8,7 @@ const THEMES = ["light", "dark", "cupcake", "cyberpunk"];
 export default function Header() {
   const accountContext = useContext(AccountContext);
 
-  const [theme, setTheme] = React.useState("light");
+  const [theme, setTheme] = React.useState("cupcake");
 
   React.useEffect(() => {
     document.documentElement.setAttribute("data-theme", theme);
