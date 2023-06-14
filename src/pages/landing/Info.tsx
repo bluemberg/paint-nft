@@ -14,30 +14,30 @@ export default function Services() {
         <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 lg:gap-8 xl:gap-10'>
           <div className="card bg-base-200 transform-gpu transition-all duration-300 hover:-translate-y-2 hover:shadow-lg">
             <div className="card-body items-center text-center gap-4">
-              <i className='bi bi-search text-4xl'></i>
+              <i className='bi bi-brush text-4xl'></i>
               <h2 className="card-title">Canvas</h2>
               <p>
-                This is a wider card with <br className='hidden xl:inline' />supporting text below as a <br className='hidden xl:inline' /> natural content.
+                A canvas that allows you <br className='hidden xl:inline' />to create your own art <br className='hidden xl:inline' /> and publish with ease.
               </p>
             </div>
           </div>
 
           <div className="card bg-base-200 transform-gpu transition-all duration-300 hover:-translate-y-2 hover:shadow-lg">
             <div className="card-body items-center text-center gap-4">
-              <i className='bi bi-chat-left-dots text-4xl'></i>
+              <i className='bi bi-shop-window text-4xl'></i>
               <h2 className="card-title">Marketplace</h2>
               <p>
-                This is a wider card with <br className='hidden xl:inline' />supporting text below as a <br className='hidden xl:inline' /> natural content.
+                A marketplace that stores all <br className='hidden xl:inline' />the art NFTs to make buying, <br className='hidden xl:inline' /> selling, and trading a smooth experience.
               </p>
             </div>
           </div>
 
           <div className="card bg-base-200 transform-gpu transition-all duration-300 hover:-translate-y-2 hover:shadow-lg">
             <div className="card-body items-center text-center gap-4">
-              <i className='bi bi-badge-ad text-4xl'></i>
-              <h2 className="card-title">Minting</h2>
+              <i className='bi bi bi-fingerprint text-4xl'></i>
+              <h2 className="card-title">Security</h2>
               <p>
-                This is a wider card with <br className='hidden xl:inline' />supporting text below as a <br className='hidden xl:inline' /> natural content.
+                A state-of-the art authentication <br className='hidden xl:inline' /> and security so that you don't <br className='hidden xl:inline' /> have to worry about your safety.
               </p>
             </div>
           </div>

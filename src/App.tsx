@@ -1,4 +1,5 @@
 import React from "react";
+import 'bootstrap-icons/font/bootstrap-icons.css';
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 
