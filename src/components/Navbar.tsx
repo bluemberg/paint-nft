@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { Transition } from "@headlessui/react";
 
 import AccountContext from "../context/account-context";
 
@@ -7,7 +8,7 @@ const THEMES = ["light", "dark", "cupcake", "cyberpunk"];
 
 export default function Header() {
   const accountContext = useContext(AccountContext);
-
+  const [isOpen, setIsOpen] = React.useState(false);
   const [theme, setTheme] = React.useState("cupcake");
 
   React.useEffect(() => {
@@ -56,7 +57,52 @@ export default function Header() {
                 </li>
               </ul>
             </div>
-            <a className="btn btn-ghost normal-case text-2xl">PaintNFT</a>
+            <>
+            <button
+              className="top-4 left-4 z-50"
+              onClick={() => setIsOpen(!isOpen)}
+            >
+              <svg
+                className="w-6 h-6 text-gray-700 cursor-pointer"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                {isOpen ? (
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                ) : (
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
+                )}
+              </svg>
+            </button>
+            <Transition
+              show={isOpen}
+              enter="transition ease-out duration-100 transform"
+              enterFrom="-translate-x-full"
+              enterTo="translate-x-0"
+              leave="transition ease-in duration-100 transform"
+              leaveFrom="translate-x-0"
+              leaveTo="-translate-x-full"
+            >
+              <div className="fixed top-0 left-0 h-screen w-1/2 bg-white z-40 shadow-lg">
+                <p className="text-gray-700 text-xl p-4">hello!</p>
+              </div>
+            </Transition>
+          </>
+          <div className="pl-0">
+            <p className="btn btn-ghost normal-case text-3xl" >PaintNFT</p>
+          </div>
           </div>
           <div className="navbar-center hidden lg:flex">
             <ul className="menu menu-horizontal p-0 font-medium">

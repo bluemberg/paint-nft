@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import ScrollTop from "../components/ScrollTop";
+import Sidebar from "../components/Sidebar";
 
 import AccountContext from "../context/account-context";
 
@@ -34,14 +35,15 @@ const BasePage = (props: Props) => {
     <nav>
       <nav>
         <Navbar></Navbar>
-        <div className="container text-center border">
+        {/* <div className="container text-center border">
           <p>Account: {accountContext.address}</p>
           <p>Balance: {accountContext.balance} mutez</p>
           <p>
             Note: this is just a temporary UI. Redesign this and the disconnect
             button above (maybe use a sidebar/drawer?).
           </p>
-        </div>
+        </div> */}
+        
         <div className="relative mb-16 min-h-screen">{props.children}</div>
         <Footer></Footer>
       </nav>
