@@ -35,7 +35,7 @@ export default function Services() {
           <div className="card bg-base-200 transform-gpu transition-all duration-300 hover:-translate-y-2 hover:shadow-lg">
             <div className="card-body items-center text-center gap-4">
               <i className='bi bi-badge-ad text-4xl'></i>
-              <h2 className="card-title">Bla bla bla</h2>
+              <h2 className="card-title">Minting</h2>
               <p>
                 This is a wider card with <br className='hidden xl:inline' />supporting text below as a <br className='hidden xl:inline' /> natural content.
               </p>
