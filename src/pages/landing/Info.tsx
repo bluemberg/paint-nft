@@ -17,7 +17,7 @@ export default function Services() {
               <i className='bi bi-brush text-4xl'></i>
               <h2 className="card-title">Canvas</h2>
               <p>
-                A canvas that allows you <br className='hidden xl:inline' />to create your own art <br className='hidden xl:inline' /> and publish with ease.
+                A built-in canvas page that <br className='hidden xl:inline' /> allows you to create and <br className='hidden xl:inline' /> publish your own art with ease.
               </p>
             </div>
           </div>
