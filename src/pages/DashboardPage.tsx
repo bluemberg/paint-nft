@@ -98,8 +98,8 @@ const DashboardPage = () => {
 
       {/* MODAL/CARD FOR EACH NFT */}
       {selectedNft && (
-        <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-75">
-          <div className="bg-base-200 p-4 rounded-lg max-w-sm overflow-y-auto max-h-full mt-20 z-50">
+        <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-75 z-50">
+          <div className="bg-base-200 p-4 rounded-lg max-w-sm overflow-y-auto max-h-full mt-20">
             <img
               src={selectedNft.token_info.artifactUri}
               alt={selectedNft.token_info.name}
