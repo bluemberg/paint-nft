@@ -16,6 +16,10 @@ const DashboardPage = () => {
 
   const openModal = (nft: NFT) => {
     setSelectedNft(nft);
+    const modal = document.getElementById('my_modal_1') as HTMLDialogElement | null;
+    if (modal) {
+      modal.showModal();
+    }
   };
 
   const closeModal = () => {
@@ -45,26 +49,34 @@ const DashboardPage = () => {
     <BasePage>
       <h1 className="text-center text-4xl">Dashboard Page</h1>
       <h2 className="text-center text-2xl mt-6">Personal NFTs</h2>
+        
+      {/* Personal NFTs Grid */}
       <div className="flex justify-center items-center h-full px-4">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mt-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 p-10">
           {nfts.map((nft: NFT, index) => (
             <div
               key={index}
-              className="bg-base-200 border-2 border-slate-300 rounded-lg p-4 cursor-pointer shadow-lg hover:bg-base-300 hover:-translate-y-2"
+              className="card card-bordered card-normal w-150 bg-base-100 shadow-xl cursor-pointer hover:bg-base-300 hover:scale-x transform transition duration-y" 
               onClick={() => openModal(nft)}
             >
-              <img
+              <figure>
+                <img
                 src={nft.token_info.artifactUri}
                 alt={nft.token_info.name}
-                className="mb-4 rounded-lg"
-              />
-              <h2 className="text-xl font-semibold mb-2">
-                {nft.token_info.name}
-              </h2>
-              <p className="text-base mb-1 break-words">
-                Author: {nft.token_info.minter}
-              </p>
-              <p className="text-base mb-1 break-words">Price: {nft.amount} mutez</p>
+                />
+              </figure>
+
+              <div className="card-body">
+                <h2 className="card-title">
+                  {nft.token_info.name}
+                </h2>
+
+                <p className="break-words"><b>Author:</b>  {nft.token_info.minter}</p>
+                <p className="break-words"><b>Description:</b> {nft.token_info.description}</p>
+                <p className="break-words"><b>Creators:</b>  {nft.token_info.creators.join(', ')}</p>
+                <p className="break-words"><b>Tags:</b> {nft.token_info.tags.join(', ')}</p>
+                <p ><b>Price:</b>  {parseInt(nft.amount,10)/1000000} tez</p>
+              </div>
             </div>
           ))}
         </div>
@@ -72,73 +84,77 @@ const DashboardPage = () => {
 
       <h2 className="text-center text-2xl mt-6">Burned NFTs</h2>
       <div className="flex justify-center items-center h-full px-4">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mt-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 p-10">
           {burnedNfts.map((nft: NFT, index) => (
             <div
               key={index}
-              className="bg-base-200 border-2 border-slate-300 rounded-lg p-4 cursor-pointer shadow-lg hover:bg-base-300"
+              className="card card-bordered card-normal w-150 bg-base-100 shadow-xl cursor-pointer hover:bg-base-300 hover:scale-x transform transition duration-y" 
               onClick={() => {}}
             >
-              <img
+              <figure>
+                <img
                 src={nft.token_info.artifactUri}
                 alt={nft.token_info.name}
-                className="mb-4 rounded-lg"
-              />
-              <h2 className="text-xl font-semibold mb-2">
-                {nft.token_info.name}
-              </h2>
-              <p className="text-base mb-1 break-words">
-                Author: {nft.token_info.minter}
-              </p>
-              <p className="text-base mb-1 break-words">Price: {nft.amount}</p>
+                />
+              </figure>
+
+              <div className="card-body">
+                <h2 className="card-title">
+                  {nft.token_info.name}
+                </h2>
+
+                <p className="break-words"><b>Author:</b>  {nft.token_info.minter}</p>
+                <p className="break-words"><b>Description:</b> {nft.token_info.description}</p>
+                <p className="break-words"><b>Creators:</b>  {nft.token_info.creators.join(', ')}</p>
+                <p className="break-words"><b>Tags:</b> {nft.token_info.tags.join(', ')}</p>
+                <p ><b>Price:</b>  {parseInt(nft.amount,10)/1000000} tez</p>
+              </div>
             </div>
           ))}
         </div>
       </div>
 
-      {/* MODAL/CARD FOR EACH NFT */}
-      {selectedNft && (
-        <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-75 z-50">
-          <div className="bg-base-200 p-4 rounded-lg max-w-sm overflow-y-auto max-h-full mt-20">
-            <img
-              src={selectedNft.token_info.artifactUri}
-              alt={selectedNft.token_info.name}
-              className="mb-4 rounded-lg"
-            />
-            <h2 className="text-xl font-semibold mb-2">
-              {selectedNft.token_info.name}
-            </h2>
-            <p className="text-base mb-1">
-              Author: {selectedNft.token_info.minter}
-            </p>
-            <p className="text-base mb-1">Price: {selectedNft.amount} mutez</p>
-            <div className="flex justify-end">
-              <button
-                className="btn btn-secondary py-2 px-4 rounded mr-2"
-                onClick={closeModal}
-              >
-                Close
-              </button>
-              <button
-                className={
-                  "btn py-2 px-4 rounded " +
-                  (selectedNft.holder === accountContext.address
-                    ? "btn-primary"
-                    : "btn-disabled")
-                }
-                onClick={() =>
-                  toast.promise(burnNft(parseInt(selectedNft.token_id)), {
-                    loading: "Burning NFT.",
-                    success: "Successfully burned NFT!",
-                    error: "Error burning NFT.",
-                  })
-                }
-              >
-                Burn
-              </button>
+      {selectedNft &&(
+        <dialog id="my_modal_1" className="modal">
+          <form method="dialog" className="modal-box">
+            <figure>
+                <img
+                src={selectedNft.token_info.artifactUri}
+                alt={selectedNft.token_info.name}
+                />
+              </figure>
+
+              <div className="card-body">
+                <h2 className="card-title">
+                  {selectedNft.token_info.name}
+                </h2>
+
+                <p className="break-words"><b>Author:</b>  {selectedNft.token_info.minter}</p>
+                <p className="break-words"><b>Description:</b> {selectedNft.token_info.description}</p>
+                <p className="break-words"><b>Creators:</b>  {selectedNft.token_info.creators.join(', ')}</p>
+                <p className="break-words"><b>Tags:</b> {selectedNft.token_info.tags.join(', ')}</p>
+                <p className="break-words"><b>Price:</b>  {parseInt(selectedNft.amount,10)/1000000} tez</p>
+              </div>
+            <div className="modal-action">
+              {/* if there is a button in form, it will close the modal */}
+              <button className="btn btn-secondary">Close</button>
+              <button className={
+                "btn " +
+                (selectedNft.holder === accountContext.address
+                  ? "btn-primary"
+                  : "btn-disabled")
+              }
+              onClick={() =>
+                toast.promise(burnNft(parseInt(selectedNft.token_id)), {
+                  loading: "Burning NFT.",
+                  success: "Successfully burned NFT!",
+                  error: "Error burning NFT.",
+                })
+                }>
+                Burn</button>
             </div>
-          </div>
-        </div>
+          </form>
+        </dialog>
       )}
     </BasePage>
   );

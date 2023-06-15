@@ -55,11 +55,11 @@ const MarketplacePage = () => {
 
       {/* GRID OF NFTS */}
       <div className="flex justify-center items-center h-full px-4">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 mt-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 mt-10 p-10">
           {nfts.map((nft: NFT, index) => (
             <div
               key={index}
-              className="card card-bordered card-normal w-150 bg-base-100 shadow-xl"
+              className="card card-bordered card-normal w-150 bg-base-100 shadow-xl cursor-pointer hover:bg-base-300 hover:scale-x transform transition duration-y" 
               onClick={() => openModal(nft)}
             >
               <figure>
@@ -74,11 +74,11 @@ const MarketplacePage = () => {
                   {nft.token_info.name}
                 </h2>
 
-                <p><b>Author:</b>  {nft.token_info.minter}</p>
-                <p><b>Description:</b> {nft.token_info.description}</p>
-                <p><b>Creators:</b>  {nft.token_info.creators.join(', ')}</p>
-                <p><b>Tags:</b> {nft.token_info.tags.join(', ')}</p>
-                <p><b>Price:</b>  {nft.amount} mutez</p>
+                <p className="break-words"><b>Author:</b>  {nft.token_info.minter}</p>
+                <p className="break-words"><b>Description:</b> {nft.token_info.description}</p>
+                <p className="break-words"><b>Creators:</b>  {nft.token_info.creators.join(', ')}</p>
+                <p className="break-words"><b>Tags:</b> {nft.token_info.tags.join(', ')}</p>
+                <p className="break-words"><b>Price:</b>  {parseInt(nft.amount,10)/1000000} tez</p>
               </div>
             </div>
           ))}
@@ -101,11 +101,11 @@ const MarketplacePage = () => {
                   {selectedNft.token_info.name}
                 </h2>
 
-                <p><b>Author:</b>  {selectedNft.token_info.minter}</p>
-                <p><b>Description:</b> {selectedNft.token_info.description}</p>
-                <p><b>Creators:</b>  {selectedNft.token_info.creators.join(', ')}</p>
-                <p><b>Tags:</b> {selectedNft.token_info.tags.join(', ')}</p>
-                <p><b>Price:</b>  {selectedNft.amount} mutez</p>
+                <p className="break-words"><b>Author:</b>  {selectedNft.token_info.minter}</p>
+                <p className="break-words"><b>Description:</b> {selectedNft.token_info.description}</p>
+                <p className="break-words"><b>Creators:</b>  {selectedNft.token_info.creators.join(', ')}</p>
+                <p className="break-words"><b>Tags:</b> {selectedNft.token_info.tags.join(', ')}</p>
+                <p className="break-words"><b>Price:</b>  {parseInt(selectedNft.amount,10)/1000000} tez</p>
               </div>
             <div className="modal-action">
               {/* if there is a button in form, it will close the modal */}
