@@ -44,9 +44,6 @@ export default function Header() {
                 className="dropdown-content mt-1 w-52 menu menu-compact p-2 bg-base-200 shadow rounded-box"
               >
                 <li>
-                  <Link to="/dashboard">Home</Link>
-                </li>
-                <li>
                   <Link to="/dashboard">Dashboard</Link>
                 </li>
                 <li>
@@ -68,31 +65,34 @@ export default function Header() {
               <div className="drawer-side">
                 <label htmlFor="my-drawer" className="drawer-overlay"></label>
                 <ul className="menu p-4 w-80 h-full bg-base-200 text-base-content">
-                  {/* Sidebar content here */}
-                  <li><a>Sidebar Item 1</a></li>
-                  <li><a>Sidebar Item 2</a></li>
-                  
+                  {/* <li><a>Sidebar Item 1</a></li>
+                  <li><a>Sidebar Item 2</a></li> */}
+                    <p>Account: {accountContext.address}</p>
+                    <p>Balance: {accountContext.balance} mutez</p>
+                  <button
+                  className="btn btn-primary"
+                  onClick={() => accountContext.disconnect()}
+                  >
+                    Disconnect
+                  </button>
                 </ul>
               </div>
             </div>
 
           </>
-          <div className="pr-40">
+          <div className=" static pr-40">
             <p className="btn btn-ghost normal-case text-3xl" >PaintNFT</p>
           </div>
           </div>
           <div className="navbar-center hidden lg:flex">
-            <ul className="menu menu-horizontal p-0 font-medium">
-              <li>
-                <Link to="/dashboard">Home</Link>
-              </li>
-              <li>
+            <ul className="menu menu-horizontal p-0 font-medium text-base ">
+              <li className="hover:font-semibold">
                 <Link to="/dashboard">Dashboard</Link>
               </li>
-              <li>
+              <li className="hover:font-semibold">
                 <Link to="/canvas">Canvas</Link>
               </li>
-              <li>
+              <li className="hover:font-semibold">
                 <Link to="/marketplace">Marketplace</Link>
               </li>
             </ul>
@@ -119,12 +119,6 @@ export default function Header() {
                 ))}
               </ul>
             </div>
-            <button
-              className="btn btn-primary"
-              onClick={() => accountContext.disconnect()}
-            >
-              Disconnect
-            </button>
           </div>
         </div>
       </div>
