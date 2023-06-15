@@ -4,7 +4,6 @@ import { Link, useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import ScrollTop from "../components/ScrollTop";
-import Sidebar from "../components/Sidebar";
 
 import AccountContext from "../context/account-context";
 
