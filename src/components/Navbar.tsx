@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import { Transition } from "@headlessui/react";
+import CopyToClipboard from "copy-to-clipboard";
 
 import AccountContext from "../context/account-context";
 
@@ -66,19 +66,28 @@ export default function Header() {
                 <ul className="menu p-4 w-80 h-full bg-base-200 text-base-content">
                   {/* <li><a>Sidebar Item 1</a></li>
                   <li><a>Sidebar Item 2</a></li> */}
-                    <div className="card w-70 bg-base-100 shadow-xl">
+                    <h1 className="px-3 pt-3 normal-case text-3xl font-semibold">Account</h1>
+                    <div className="flex flex-col w-full">
+                        <div className="divider"></div> 
+                    </div>
+                    <div className="card w-full bg-base-100 shadow-xl">
                       <div className="card-body">
-                        <h2 className="card-title">Account</h2>
-                        <p>Account: {accountContext.address}</p>
+                        <h2 className="card-title">Address</h2>
+                        <p className="break-words">{accountContext.address}</p>
+                        <div className="card-actions justify-end">
+                          <button className="btn btn-primary onClick={copyToClipboard}">
+                            Copy to clipboard
+                          </button>
+                        </div>
                       </div>
                     </div>
                     <div className="flex flex-col w-full">
                       <div className="divider"></div> 
                     </div>
-                    <div className="card w-70 bg-base-100 shadow-xl">
+                    <div className="card w-69 bg-base-100 shadow-xl">
                       <div className="card-body">
                         <h2 className="card-title">Balance</h2>
-                        <p>Balance: {accountContext.balance} mutez</p>
+                        <p>{accountContext.balance} mutez</p>
                       </div>
                     </div>
                   <button
