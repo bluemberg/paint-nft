@@ -101,7 +101,7 @@ const MarketplacePage = () => {
                   {selectedNft.token_info.name}
                 </h2>
 
-                <p className="truncate"><b>Author:</b>  {selectedNft.token_info.minter}</p>
+                <p><b>Author:</b>  {selectedNft.token_info.minter}</p>
                 <p><b>Description:</b> {selectedNft.token_info.description}</p>
                 <p><b>Creators:</b>  {selectedNft.token_info.creators.join(', ')}</p>
                 <p><b>Tags:</b> {selectedNft.token_info.tags.join(', ')}</p>
@@ -109,9 +109,9 @@ const MarketplacePage = () => {
               </div>
             <div className="modal-action">
               {/* if there is a button in form, it will close the modal */}
-              <button className="btn">Close</button>
+              <button className="btn btn-secondary">Close</button>
               <button className={
-                "btn-primary"
+                "btn "
                 + (selectedNft.token_info.minter === accountContext.address
                   ? "btn-disabled"
                   : "btn-primary")
