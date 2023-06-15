@@ -78,7 +78,7 @@ const MarketplacePage = () => {
                 <p><b>Description:</b> {nft.token_info.description}</p>
                 <p><b>Creators:</b>  {nft.token_info.creators.join(', ')}</p>
                 <p><b>Tags:</b> {nft.token_info.tags.join(', ')}</p>
-                <p><b>Price:</b>  {nft.amount}</p>
+                <p><b>Price:</b>  {nft.amount} mutez</p>
               </div>
             </div>
           ))}
@@ -105,7 +105,7 @@ const MarketplacePage = () => {
                 <p><b>Description:</b> {selectedNft.token_info.description}</p>
                 <p><b>Creators:</b>  {selectedNft.token_info.creators.join(', ')}</p>
                 <p><b>Tags:</b> {selectedNft.token_info.tags.join(', ')}</p>
-                <p><b>Price:</b>  {selectedNft.amount}</p>
+                <p><b>Price:</b>  {selectedNft.amount} mutez</p>
               </div>
             <div className="modal-action">
               {/* if there is a button in form, it will close the modal */}
