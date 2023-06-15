@@ -36,7 +36,7 @@ export default function Header() {
                 tabIndex={0}
                 className="btn btn-circle btn-primary lg:hidden mr-1"
               >
-                <i className="bi bi-list text-2xl"></i>
+                <i className="bi bi-three-dots-vertical"></i>
               </label>
               <ul
                 tabIndex={0}
@@ -59,7 +59,9 @@ export default function Header() {
               <input id="my-drawer" type="checkbox" className="drawer-toggle" />
               <div className="drawer-content">
                 
-                <label htmlFor="my-drawer" className="btn btn-primary drawer-button"> Account </label>
+                <label htmlFor="my-drawer" className="btn btn-primary drawer-button"> 
+                  <i className="bi bi-list text-3xl"></i>
+                </label>
               </div> 
               <div className="drawer-side z-20">
                 <label htmlFor="my-drawer" className="drawer-overlay"></label>
@@ -105,15 +107,24 @@ export default function Header() {
           </Link>
           </div>
           <div className="navbar-center hidden lg:flex">
-            <ul className="menu menu-horizontal p-0 font-medium text-base ">
-              <li className="hover:font-semibold">
-                <Link to="/dashboard">Dashboard</Link>
+            <ul className="menu menu-horizontal p-2 font-medium text-lg">
+              <li className="hover:font-semibold px-2">
+                <a>
+                  <i className="bi bi-house-door text-2xl"></i>
+                  <Link to="/dashboard">Dashboard</Link>
+                </a>
               </li>
-              <li className="hover:font-semibold">
-                <Link to="/canvas">Canvas</Link>
+              <li className="hover:font-semibold px-2">
+                <a>
+                <i className="bi bi-palette text-2xl"></i>
+                  <Link to="/canvas">Canvas</Link>
+                </a>
               </li>
-              <li className="hover:font-semibold">
-                <Link to="/marketplace">Marketplace</Link>
+              <li className="hover:font-semibold px-2">
+                <a>
+                  <i className="bi bi-easel2 text-2xl"></i>
+                  <Link to="/marketplace">Marketplace</Link>
+                </a>
               </li>
             </ul>
           </div>
