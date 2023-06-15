@@ -58,49 +58,26 @@ export default function Header() {
               </ul>
             </div>
             <>
-            <button
-              className="top-4 left-4 z-50"
-              onClick={() => setIsOpen(!isOpen)}
-            >
-              <svg
-                className="w-6 h-6 text-gray-700 cursor-pointer"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                {isOpen ? (
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                ) : (
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M4 6h16M4 12h16M4 18h16"
-                  />
-                )}
-              </svg>
-            </button>
-            <Transition
-              show={isOpen}
-              enter="transition ease-out duration-100 transform"
-              enterFrom="-translate-x-full"
-              enterTo="translate-x-0"
-              leave="transition ease-in duration-100 transform"
-              leaveFrom="translate-x-0"
-              leaveTo="-translate-x-full"
-            >
-              <div className="fixed top-0 left-0 h-screen w-1/2 bg-white z-40 shadow-lg">
-                <p className="text-gray-700 text-xl p-4">hello!</p>
+
+            <div className="drawer">
+              <input id="my-drawer" type="checkbox" className="drawer-toggle" />
+              <div className="drawer-content">
+                {/* Page content here */}
+                <label htmlFor="my-drawer" className="btn btn-primary drawer-button"> Account </label>
+              </div> 
+              <div className="drawer-side">
+                <label htmlFor="my-drawer" className="drawer-overlay"></label>
+                <ul className="menu p-4 w-80 h-full bg-base-200 text-base-content">
+                  {/* Sidebar content here */}
+                  <li><a>Sidebar Item 1</a></li>
+                  <li><a>Sidebar Item 2</a></li>
+                  
+                </ul>
               </div>
-            </Transition>
+            </div>
+
           </>
-          <div className="pl-0">
+          <div className="pr-40">
             <p className="btn btn-ghost normal-case text-3xl" >PaintNFT</p>
           </div>
           </div>
