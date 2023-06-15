@@ -50,7 +50,7 @@ const DashboardPage = () => {
           {nfts.map((nft: NFT, index) => (
             <div
               key={index}
-              className="bg-white border border-gray-200 rounded-lg p-4 cursor-pointer hover:shadow-lg"
+              className="bg-base-200 border-2 border-slate-300 rounded-lg p-4 cursor-pointer shadow-lg hover:bg-base-300"
               onClick={() => openModal(nft)}
             >
               <img
@@ -58,13 +58,13 @@ const DashboardPage = () => {
                 alt={nft.token_info.name}
                 className="mb-4 rounded-lg"
               />
-              <h2 className="text-lg font-semibold mb-2">
+              <h2 className="text-xl font-semibold mb-2">
                 {nft.token_info.name}
               </h2>
-              <p className="text-gray-600 mb-1">
+              <p className="text-base mb-1 break-words">
                 Author: {nft.token_info.minter}
               </p>
-              <p className="text-gray-600 mb-1">Price: {nft.amount}</p>
+              <p className="text-base mb-1 break-words">Price: {nft.amount} mutez</p>
             </div>
           ))}
         </div>
@@ -76,7 +76,7 @@ const DashboardPage = () => {
           {burnedNfts.map((nft: NFT, index) => (
             <div
               key={index}
-              className="bg-white border border-gray-200 rounded-lg p-4 cursor-pointer hover:shadow-lg"
+              className="bg-base-200 border-2 border-slate-300 rounded-lg p-4 cursor-pointer shadow-lg hover:bg-base-300"
               onClick={() => {}}
             >
               <img
@@ -84,13 +84,13 @@ const DashboardPage = () => {
                 alt={nft.token_info.name}
                 className="mb-4 rounded-lg"
               />
-              <h2 className="text-lg font-semibold mb-2">
+              <h2 className="text-xl font-semibold mb-2">
                 {nft.token_info.name}
               </h2>
-              <p className="text-gray-600 mb-1">
+              <p className="text-base mb-1 break-words">
                 Author: {nft.token_info.minter}
               </p>
-              <p className="text-gray-600 mb-1">Price: {nft.amount}</p>
+              <p className="text-base mb-1 break-words">Price: {nft.amount}</p>
             </div>
           ))}
         </div>
@@ -99,25 +99,19 @@ const DashboardPage = () => {
       {/* MODAL/CARD FOR EACH NFT */}
       {selectedNft && (
         <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-75">
-          <div className="bg-white p-4 rounded-lg max-w-sm overflow-y-auto max-h-full mt-20">
-            <button
-              className="absolute top-2 right-2 text-gray-600 hover:text-gray-900"
-              onClick={closeModal}
-            >
-              Close
-            </button>
+          <div className="bg-base-200 p-4 rounded-lg max-w-sm overflow-y-auto max-h-full mt-20 z-50">
             <img
               src={selectedNft.token_info.artifactUri}
               alt={selectedNft.token_info.name}
               className="mb-4 rounded-lg"
             />
-            <h2 className="text-lg font-semibold mb-2">
+            <h2 className="text-xl font-semibold mb-2">
               {selectedNft.token_info.name}
             </h2>
-            <p className="text-gray-600 mb-1">
+            <p className="text-base mb-1">
               Author: {selectedNft.token_info.minter}
             </p>
-            <p className="text-gray-600 mb-1">Price: {selectedNft.amount}</p>
+            <p className="text-base mb-1">Price: {selectedNft.amount} mutez</p>
             <div className="flex justify-end">
               <button
                 className="btn btn-secondary py-2 px-4 rounded mr-2"
@@ -127,7 +121,7 @@ const DashboardPage = () => {
               </button>
               <button
                 className={
-                  "btn  text-white py-2 px-4 rounded " +
+                  "btn py-2 px-4 rounded " +
                   (selectedNft.holder === accountContext.address
                     ? "btn-primary"
                     : "btn-disabled")
