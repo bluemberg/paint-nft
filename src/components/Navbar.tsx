@@ -102,7 +102,7 @@ export default function Header() {
             </div>
 
           </>
-          <Link to="/dashboard" className=" static pr-40">
+          <Link to="/dashboard" className=" static pr-24">
             <p className="btn btn-ghost normal-case text-3xl" >PaintNFT</p>
           </Link>
           </div>
@@ -130,7 +130,7 @@ export default function Header() {
           </div>
           <div className="navbar-end">
             <div className="dropdown dropdown-end">
-              <label tabIndex={0} className="btn">
+              <label tabIndex={0} className="btn text-base">
                 {THEMES.length} Themes
               </label>
               <ul
