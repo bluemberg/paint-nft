@@ -166,18 +166,6 @@ const MintModal = ({ canvasNftRef, canvasBgRef, canvasDrawRef }: Props) => {
   };
 
   const mint = async () => {
-    var config = {
-      method: 'get',
-      url: 'https://api.pinata.cloud/data/testAuthentication',
-      headers: { 
-        'Authorization': `Bearer ${process.env.REACT_APP_PINATA_JWT}`
-      }
-    };
-    
-    const res = await axios(config)
-    
-    console.log(res.data);
-
     const pinNftRes = await pinNft();
     if (pinNftRes.status === 200) {
       const tokenMetadata = generateTokenMetadata(
