@@ -61,7 +61,7 @@ export default function Header() {
                 {/* Page content here */}
                 <label htmlFor="my-drawer" className="btn btn-primary drawer-button"> Account </label>
               </div> 
-              <div className="drawer-side">
+              <div className="drawer-side z-20">
                 <label htmlFor="my-drawer" className="drawer-overlay"></label>
                 <ul className="menu p-4 w-80 h-full bg-base-200 text-base-content">
                   {/* <li><a>Sidebar Item 1</a></li>
@@ -101,9 +101,9 @@ export default function Header() {
             </div>
 
           </>
-          <div className=" static pr-40">
+          <Link to="/dashboard" className=" static pr-40">
             <p className="btn btn-ghost normal-case text-3xl" >PaintNFT</p>
-          </div>
+          </Link>
           </div>
           <div className="navbar-center hidden lg:flex">
             <ul className="menu menu-horizontal p-0 font-medium text-base ">
@@ -119,13 +119,13 @@ export default function Header() {
             </ul>
           </div>
           <div className="navbar-end">
-            <div className="dropdown dropdown-end dropdown-hover">
+            <div className="dropdown dropdown-end">
               <label tabIndex={0} className="btn">
                 {THEMES.length} Themes
               </label>
               <ul
                 tabIndex={0}
-                className="dropdown-content mt-1 w-52 max-h-96 overflow-y-auto menu menu-compact p-2  bg-base-200 shadow rounded-box"
+                className="dropdown-content w-52 max-h-96 overflow-y-auto menu menu-compact p-2  bg-base-200 shadow rounded-box"
               >
                 {THEMES.map((theme, i) => (
                   <li key={theme + i}>
