@@ -12,7 +12,6 @@ export default function Header() {
 
   React.useEffect(() => {
     document.documentElement.setAttribute("data-theme", theme);
-    console.log("Hi");
     localStorage.setItem('data-theme', theme)
   }, [theme]);
 

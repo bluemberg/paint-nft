@@ -18,7 +18,6 @@ export default function Header() {
 
   React.useEffect(() => {
     document.documentElement.setAttribute("data-theme", theme);
-    console.log("Hi");
     localStorage.setItem('data-theme', theme)
   }, [theme]);
 
@@ -67,10 +66,23 @@ export default function Header() {
                 <ul className="menu p-4 w-80 h-full bg-base-200 text-base-content">
                   {/* <li><a>Sidebar Item 1</a></li>
                   <li><a>Sidebar Item 2</a></li> */}
-                    <p>Account: {accountContext.address}</p>
-                    <p>Balance: {accountContext.balance} mutez</p>
+                    <div className="card w-70 bg-base-100 shadow-xl">
+                      <div className="card-body">
+                        <h2 className="card-title">Account</h2>
+                        <p>Account: {accountContext.address}</p>
+                      </div>
+                    </div>
+                    <div className="flex flex-col w-full">
+                      <div className="divider"></div> 
+                    </div>
+                    <div className="card w-70 bg-base-100 shadow-xl">
+                      <div className="card-body">
+                        <h2 className="card-title">Balance</h2>
+                        <p>Balance: {accountContext.balance} mutez</p>
+                      </div>
+                    </div>
                   <button
-                  className="btn btn-primary"
+                  className="btn btn-primary absolute inset-x-4 bottom-6"
                   onClick={() => accountContext.disconnect()}
                   >
                     Disconnect
