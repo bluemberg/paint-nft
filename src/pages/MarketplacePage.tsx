@@ -66,10 +66,10 @@ const MarketplacePage = () => {
               <h2 className="text-lg font-semibold mb-2">
                 {nft.token_info.name}
               </h2>
-              <p className="text-gray-600 mb-1">
+              <p className="text-gray-600 mb-1 break-words">
                 Author: {nft.token_info.minter}
               </p>
-              <p className="text-gray-600 mb-1">Price: {nft.amount}</p>
+              <p className="text-gray-600 mb-1">Price: {nft.amount} mutez</p>
             </div>
           ))}
         </div>
