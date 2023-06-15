@@ -50,7 +50,7 @@ const DashboardPage = () => {
           {nfts.map((nft: NFT, index) => (
             <div
               key={index}
-              className="bg-base-200 border-2 border-slate-300 rounded-lg p-4 cursor-pointer shadow-lg hover:bg-base-300"
+              className="bg-base-200 border-2 border-slate-300 rounded-lg p-4 cursor-pointer shadow-lg hover:bg-base-300 hover:-translate-y-2"
               onClick={() => openModal(nft)}
             >
               <img
