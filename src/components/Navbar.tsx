@@ -27,7 +27,7 @@ export default function Header() {
   };
 
   return (
-    <header className="bg-base-100 py-2 sticky top-0 z-50">
+    <header className="bg-base-100 py-2 sticky top-0 z-10">
       <div className="container">
         <div className="navbar px-0">
           <div className="navbar-start">
@@ -58,14 +58,13 @@ export default function Header() {
             <div className="drawer">
               <input id="my-drawer" type="checkbox" className="drawer-toggle" />
               <div className="drawer-content">
-                {/* Page content here */}
+                
                 <label htmlFor="my-drawer" className="btn btn-primary drawer-button"> Account </label>
               </div> 
               <div className="drawer-side z-20">
                 <label htmlFor="my-drawer" className="drawer-overlay"></label>
                 <ul className="menu p-4 w-80 h-full bg-base-200 text-base-content">
-                  {/* <li><a>Sidebar Item 1</a></li>
-                  <li><a>Sidebar Item 2</a></li> */}
+
                     <h1 className="px-3 pt-3 normal-case text-3xl font-semibold">Account</h1>
                     <div className="flex flex-col w-full">
                         <div className="divider"></div> 

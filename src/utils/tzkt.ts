@@ -10,8 +10,10 @@ export const fetchMarketplaceContractData = async () => {
       `https://api.${network}.tzkt.io/v1/contracts/${marketplaceAddr}/bigmaps/data/keys`
     )
     .then((res) => res.data);
-
-  const marketplaceData = res.map((key: any) => key.value);
+  const marketplaceData = res.map((nft: any) => ({
+    active: nft.active,
+    value: nft.value,
+  }));
   return marketplaceData;
 };
 
@@ -35,9 +37,10 @@ export const fetchTokenContractData = async () => {
 export const fetchCollectableNfts = async () => {
   // fetch all collectable NFTs to be displayed on the marketplace
 
-  const marketplaceData = (await fetchMarketplaceContractData()).filter(
-    (nft: any) => nft.collectable
-  );
+  const marketplaceData = (await fetchMarketplaceContractData())
+    .filter((nft: any) => nft.value.collectable && nft.active)
+    .map((nft: any) => nft.value);
+
   const tokenData = await fetchTokenContractData();
 
   // combine the above data to retrieve all data for each collectable NFT
@@ -53,4 +56,38 @@ export const fetchCollectableNfts = async () => {
 
 // users can burn the NFTs they hold
 // thus we need to fetch their personal NFTs
-export const fetchPersonalNfts = async () => {};
+export const fetchPersonalNfts = async (userAddress: string) => {
+  const marketplaceData = (await fetchMarketplaceContractData())
+    .filter((nft: any) => nft.value.holder === userAddress && nft.active)
+    .map((nft: any) => nft.value);
+
+  const tokenData = await fetchTokenContractData();
+
+  // combine the above data to retrieve all data for each personal NFT
+  const personalNfts = marketplaceData.map((personal: any) => ({
+    ...personal,
+    token_info: tokenData.filter(
+      (token: any) => token.token_id === personal.token_id
+    )[0].token_info,
+  }));
+
+  return personalNfts;
+};
+
+export const fetchBurnedNfts = async (userAddress: string) => {
+  const marketplaceData = (await fetchMarketplaceContractData())
+    .filter((nft: any) => nft.value.holder === userAddress && !nft.active)
+    .map((nft: any) => nft.value);
+
+  const tokenData = await fetchTokenContractData();
+
+  // combine the above data to retrieve all data for each personal NFT
+  const burnedNfts = marketplaceData.map((burned: any) => ({
+    ...burned,
+    token_info: tokenData.filter(
+      (token: any) => token.token_id === burned.token_id
+    )[0].token_info,
+  }));
+
+  return burnedNfts;
+};
