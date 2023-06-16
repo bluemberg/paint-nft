@@ -116,7 +116,7 @@ const DashboardPage = () => {
           {burnedNfts.map((nft: NFT, index) => (
             <div
               key={index}
-              className="card card-bordered card-normal w-150 bg-base-100 shadow-xl cursor-pointer hover:bg-base-300 hover:scale-x transform transition duration-y"
+              className="card card-bordered card-normal w-150 bg-base-100 shadow-xl cursor-pointer hover:-translate-y-2"
               onClick={() => { }}
             >
               <figure>
@@ -144,44 +144,47 @@ const DashboardPage = () => {
 
       {selectedNft && (
         <dialog id="my_modal_1" className="modal">
-          <form method="dialog" className="modal-box">
-            <figure>
-              <img
-                src={selectedNft.token_info.artifactUri}
-                alt={selectedNft.token_info.name}
-              />
-            </figure>
+          <div className="">
+            <form method="dialog" className="modal-box">
+              <figure>
+                <img
+                  src={selectedNft.token_info.artifactUri}
+                  alt={selectedNft.token_info.name}
+                  className=" h-64 w-full rounded-lg"
+                />
+              </figure>
 
-            <div className="card-body">
-              <h2 className="card-title">
-                {selectedNft.token_info.name}
-              </h2>
+              <div className="card-body pt-5 pb-0 mb-0">
+                <h2 className="card-title">
+                  {selectedNft.token_info.name}
+                </h2>
 
-              <p className="break-words"><b>Author:</b>  {selectedNft.token_info.minter}</p>
-              <p className="break-words"><b>Description:</b> {selectedNft.token_info.description}</p>
-              <p className="break-words"><b>Creators:</b>  {selectedNft.token_info.creators.join(', ')}</p>
-              <p className="break-words"><b>Tags:</b> {selectedNft.token_info.tags.join(', ')}</p>
-              <p className="break-words"><b>Price:</b>  {parseInt(selectedNft.amount, 10) / 1000000} tez</p>
-            </div>
-            <div className="modal-action">
-              {/* if there is a button in form, it will close the modal */}
-              <button className="btn btn-secondary">Close</button>
-              <button className={
-                "btn " +
-                (selectedNft.holder === accountContext.address
-                  ? "btn-primary"
-                  : "btn-disabled")
-              }
-                onClick={() =>
-                  toast.promise(burnNft(parseInt(selectedNft.token_id)), {
-                    loading: "Burning NFT.",
-                    success: "Successfully burned NFT!",
-                    error: "Error burning NFT.",
-                  })
-                }>
-                Burn</button>
-            </div>
-          </form>
+                <p className="break-words"><b>Author:</b>  {selectedNft.token_info.minter}</p>
+                <p className="break-words"><b>Description:</b> {selectedNft.token_info.description}</p>
+                <p className="break-words"><b>Creators:</b>  {selectedNft.token_info.creators.join(', ')}</p>
+                <p className="break-words"><b>Tags:</b> {selectedNft.token_info.tags.join(', ')}</p>
+                <p className="break-words"><b>Price:</b>  {parseInt(selectedNft.amount, 10) / 1000000} tez</p>
+              </div>
+              <div className="modal-action mt-0 mb-0">
+                {/* if there is a button in form, it will close the modal */}
+                <button className="btn btn-secondary">Close</button>
+                <button className={
+                  "btn " +
+                  (selectedNft.holder === accountContext.address
+                    ? "btn-primary"
+                    : "btn-disabled")
+                }
+                  onClick={() =>
+                    toast.promise(burnNft(parseInt(selectedNft.token_id)), {
+                      loading: "Burning NFT.",
+                      success: "Successfully burned NFT!",
+                      error: "Error burning NFT.",
+                    })
+                  }>
+                  Burn</button>
+              </div>
+            </form>
+          </div>
         </dialog>
       )}
     </BasePage>
