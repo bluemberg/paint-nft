@@ -92,7 +92,7 @@ export default function Header() {
                       </div>
                     </div>
                   <button
-                  className="btn btn-primary absolute inset-x-4 bottom-6"
+                  className="btn btn-error absolute inset-x-4 bottom-6"
                   onClick={() => accountContext.disconnect()}
                   >
                     Disconnect
