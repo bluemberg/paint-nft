@@ -60,7 +60,7 @@ const DashboardPage = () => {
             <div className="max-w-md">
               <a>
                 <i className="bi bi-ui-checks-grid text-8xl"></i>
-                <h1 className="mb-5 text-7xl font-bold p-6">DASHBOARD</h1>
+                <h1 className="mb-5 text-7xl font-bold pt-6">DASHBOARD</h1>
               </a>
                 {/* <button className="btn btn-primary">Get Started</button> */}
             </div>
