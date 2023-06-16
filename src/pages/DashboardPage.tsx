@@ -59,13 +59,13 @@ const DashboardPage = () => {
     <BasePage>
       <section>
         <div
-          className="hero h-96 md:h-[400px] overflow-hidden bg-left-bottom "
+          className="hero h-96 md:h-[400px] overflow-hidden bg-top"
           style={{
             backgroundImage: `url('${img}')`,
           }}
         >
-          <div className="hero-overlay bg-opacity-60 "></div>
-          <div className="hero-content text-center text-neutral-content">
+          <div className="hero-overlay bg-opacity-40 bg-secondary"></div>
+          <div className="hero-content text-center text-secondary-content">
             <div className="max-w-md">
               <a>
                 <i className="bi bi-ui-checks-grid text-8xl"></i>
