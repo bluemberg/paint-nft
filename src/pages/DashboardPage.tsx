@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import toast from "react-hot-toast";
+import img from "../img/db_bg.jpg";
 
 import BasePage from "./BasePage";
 import { fetchPersonalNfts, fetchBurnedNfts } from "../utils/tzkt";
@@ -49,12 +50,12 @@ const DashboardPage = () => {
     <BasePage>
     <section>
         <div
-          className="hero h-96 md:h-[500px] overflow-hidden"
+          className="hero h-96 md:h-[400px] overflow-hidden bg-left-bottom "
           style={{
-            backgroundImage: `url("https://img.freepik.com/free-vector/linear-vintage-vaporwave-background_23-2148896937.jpg?w=996&t=st=1686891130~exp=1686891730~hmac=8b4008f79cfa156b383b2918d142da1369920f09c6f66bbecf2cb2f12c6ccca5")`,
+            backgroundImage: `url('${img}')`,
           }}
         >
-          <div className="hero-overlay bg-opacity-60"></div>
+          <div className="hero-overlay bg-opacity-60 "></div>
           <div className="hero-content text-center text-neutral-content">
             <div className="max-w-md">
               <a>
