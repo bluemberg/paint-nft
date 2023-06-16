@@ -140,7 +140,7 @@ const DashboardPage = () => {
           {burnedNfts.map((nft: NFT, index) => (
             <div
               key={index}
-              className="card card-bordered card-normal w-150 bg-base-200 shadow-xl cursor-pointer hover:-translate-y-2"
+              className="card card-bordered card-normal w-150 bg-base-200 shadow-xl hover:-translate-y-2"
               onClick={() => {}}
             >
               <figure>
