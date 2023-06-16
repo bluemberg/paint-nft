@@ -67,19 +67,19 @@ const DashboardPage = () => {
           </div>
       </section>
       
-      <h1 className="text-left text-6xl font-bold pl-20 pt-12">My NFTs</h1>
+      <h1 className="text-left text-6xl font-bold pl-24 pt-12">My NFTs</h1>
       
-      <div className="px-20">
+      <div className="px-24">
         <div className="divider"></div>
       </div>
 
       {/* Personal NFTs Grid */}
-      <div className="flex justify-center items-center h-full px-4">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 px-10 py-4">
+      <div className="flex justify-center items-center h-full px-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 px-10 py-4">
           {nfts.map((nft: NFT, index) => (
             <div
               key={index}
-              className="card card-bordered card-normal w-150 bg-base-100 shadow-xl cursor-pointer hover:bg-base-300 hover:scale-x transform transition duration-y"
+              className="card card-bordered card-normal w-150 bg-base-300 shadow-xl cursor-pointer hover:-translate-y-2"
               onClick={() => openModal(nft)}
             >
               <figure>
@@ -105,13 +105,13 @@ const DashboardPage = () => {
         </div>
       </div>
 
-      <h1 className="text-left text-6xl font-bold pl-20 pt-12">Burnt NFTs</h1>
+      <h1 className="text-left text-6xl font-bold pl-24 pt-12">Burnt NFTs</h1>
       
-      <div className="px-20">
+      <div className="px-24">
         <div className="divider"></div>
       </div>
         
-      <div className="flex justify-center items-center h-full px-4">
+      <div className="flex justify-center items-center h-full px-16">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 px-10 py-4">
           {burnedNfts.map((nft: NFT, index) => (
             <div
