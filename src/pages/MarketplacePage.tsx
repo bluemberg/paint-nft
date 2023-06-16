@@ -75,13 +75,23 @@ const MarketplacePage = () => {
         </div>
       </section>
 
+      <div className="text-left pl-24 pt-12">
+        <h1 className="text-6xl font-bold pb-5">Marketplace</h1>
+        <p className="text-lg pb-1">Browse public NFTs here available for buying. Click on an NFT to see more details.</p>
+        <p className="text-lg">Your minted NFTs will also appear here.</p>
+      </div>
+
+      <div className="px-24">
+        <div className="divider"></div>
+      </div>
+
       {/* GRID OF NFTS */}
-      <div className="flex justify-center items-center h-full px-4">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 mt-10 p-10">
+      <div className="flex justify-center items-center h-full px-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 px-10 py-4">
           {nfts.map((nft: NFT, index) => (
             <div
               key={index}
-              className="card card-bordered card-normal w-150 bg-base-100 shadow-xl cursor-pointer hover:bg-base-300 hover:scale-x transform transition duration-y"
+              className="card card-bordered card-normal w-150 bg-base-200 shadow-xl cursor-pointer hover:-translate-y-2"
               onClick={() => openModal(nft)}
             >
               <figure>
@@ -101,15 +111,15 @@ const MarketplacePage = () => {
                 <p className="break-words">
                   <b>Author:</b> {nft.token_info.minter}
                 </p>
-                <p className="break-words">
+                {/* <p className="break-words">
                   <b>Description:</b> {nft.token_info.description}
-                </p>
+                </p> */}
                 <p className="break-words">
                   <b>Creators:</b> {nft.token_info.creators.join(", ")}
                 </p>
-                <p className="break-words">
+                {/* <p className="break-words">
                   <b>Tags:</b> {nft.token_info.tags.join(", ")}
-                </p>
+                </p> */}
                 <p className="break-words">
                   <b>Price:</b> {parseInt(nft.amount, 10) / 1000000} tez
                 </p>
@@ -122,7 +132,7 @@ const MarketplacePage = () => {
       {/* MODAL FOR EACH CARD */}
       {selectedNft && (
         <dialog id="my_modal_1" className="modal">
-          <form method="dialog" className="modal-box">
+          <form method="dialog" className="modal-box bg-base-200">
             <figure>
               <img
                 src={convertToDedicatedUri(selectedNft.token_info.artifactUri)}
@@ -131,10 +141,11 @@ const MarketplacePage = () => {
                   currentTarget.src = selectedNft.token_info.artifactUri;
                 }}
                 alt={selectedNft.token_info.name}
+                className="h-64 w-full rounded-lg"
               />
             </figure>
 
-            <div className="card-body">
+            <div className="card-body pt-5 pb-0 mb-0 px-0">
               <h2 className="card-title">{selectedNft.token_info.name}</h2>
 
               <p className="break-words">
