@@ -107,22 +107,24 @@ export default function Header() {
           </Link>
           </div>
           <div className="navbar-center hidden lg:flex">
-            <ul className="menu menu-horizontal p-2 font-medium text-lg">
-              <li className="hover:font-semibold px-2">
+            <ul className="menu menu-horizontal p-2 font-medium text-base">
+              <li className="hover:font-semibold px-0">
                 <a>
-                  <i className="bi bi-house-door text-2xl"></i>
+                  <i className="bi bi-ui-checks-grid text-xl"></i>
                   <Link to="/dashboard">Dashboard</Link>
                 </a>
               </li>
-              <li className="hover:font-semibold px-2">
+              <div className="divider lg:divider-horizontal"></div> 
+              <li className="hover:font-semibold px-0">
                 <a>
-                <i className="bi bi-palette text-2xl"></i>
+                <i className="bi bi-palette text-xl"></i>
                   <Link to="/canvas">Canvas</Link>
                 </a>
               </li>
-              <li className="hover:font-semibold px-2">
+              <div className="divider lg:divider-horizontal"></div> 
+              <li className="hover:font-semibold px-0">
                 <a>
-                  <i className="bi bi-easel2 text-2xl"></i>
+                  <i className="bi bi-easel2 text-xl"></i>
                   <Link to="/marketplace">Marketplace</Link>
                 </a>
               </li>
