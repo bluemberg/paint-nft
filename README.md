@@ -7,6 +7,7 @@ PaintNFT is a decentralized FA2-compliant web platform that allows users to pain
 **CAYETANO**, Anthony Van\
 **DYCAICO**, Julian Francis\
 **MARIÑAS**, Gabriel Kenneth\
+**MONEDA**, Blooming Dan\
 **SARENAS**, John Erick
 
 ## Usage
