@@ -96,9 +96,9 @@ const DashboardPage = () => {
                 </h2>
 
                 <p className="break-words"><b>Author:</b>  {nft.token_info.minter}</p>
-                <p className="break-words"><b>Description:</b> {nft.token_info.description}</p>
+                {/* <p className="break-words"><b>Description:</b> {nft.token_info.description}</p> */}
                 <p className="break-words"><b>Creators:</b>  {nft.token_info.creators.join(', ')}</p>
-                <p className="break-words"><b>Tags:</b> {nft.token_info.tags.join(', ')}</p>
+                {/* <p className="break-words"><b>Tags:</b> {nft.token_info.tags.join(', ')}</p> */}
                 <p ><b>Price:</b>  {parseInt(nft.amount, 10) / 1000000} tez</p>
               </div>
             </div>
@@ -133,9 +133,9 @@ const DashboardPage = () => {
                 </h2>
 
                 <p className="break-words"><b>Author:</b>  {nft.token_info.minter}</p>
-                <p className="break-words"><b>Description:</b> {nft.token_info.description}</p>
+                {/* <p className="break-words"><b>Description:</b> {nft.token_info.description}</p> */}
                 <p className="break-words"><b>Creators:</b>  {nft.token_info.creators.join(', ')}</p>
-                <p className="break-words"><b>Tags:</b> {nft.token_info.tags.join(', ')}</p>
+                {/* <p className="break-words"><b>Tags:</b> {nft.token_info.tags.join(', ')}</p> */}
                 <p ><b>Price:</b>  {parseInt(nft.amount, 10) / 1000000} tez</p>
               </div>
             </div>
@@ -146,7 +146,7 @@ const DashboardPage = () => {
       {selectedNft && (
         <dialog id="my_modal_1" className="modal">
           <div className="">
-            <form method="dialog" className="modal-box">
+            <form method="dialog" className="modal-box bg-base-300">
               <figure>
                 <img
                   src={selectedNft.token_info.artifactUri}
@@ -155,7 +155,7 @@ const DashboardPage = () => {
                 />
               </figure>
 
-              <div className="card-body pt-5 pb-0 mb-0">
+              <div className="card-body pt-5 pb-0 mb-0 px-0">
                 <h2 className="card-title">
                   {selectedNft.token_info.name}
                 </h2>
