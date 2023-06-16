@@ -89,7 +89,7 @@ const DashboardPage = () => {
           {nfts.map((nft: NFT, index) => (
             <div
               key={index}
-              className="card card-bordered card-normal w-150 bg-base-300 shadow-xl cursor-pointer hover:-translate-y-2"
+              className="card card-bordered card-normal w-150 bg-base-200 shadow-xl cursor-pointer hover:-translate-y-2"
               onClick={() => openModal(nft)}
             >
               <figure>
@@ -134,7 +134,7 @@ const DashboardPage = () => {
           {burnedNfts.map((nft: NFT, index) => (
             <div
               key={index}
-              className="card card-bordered card-normal w-150 bg-base-300 shadow-xl cursor-pointer hover:-translate-y-2"
+              className="card card-bordered card-normal w-150 bg-base-200 shadow-xl cursor-pointer hover:-translate-y-2"
               onClick={() => {}}
             >
               <figure>
@@ -171,7 +171,7 @@ const DashboardPage = () => {
       {selectedNft && (
         <dialog id="my_modal_1" className="modal">
           <div className="">
-            <form method="dialog" className="modal-box bg-base-300">
+            <form method="dialog" className="modal-box bg-base-200">
               <figure>
                 <img
                   src={convertToDedicatedUri(
