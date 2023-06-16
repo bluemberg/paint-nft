@@ -9,7 +9,6 @@ import CanvasPage from "./pages/CanvasPage";
 import MarketplacePage from "./pages/MarketplacePage";
 
 import { AccountContextProvider } from "./context/account-context";
-import { MarketplaceContextProvider } from "./context/marketplace-context";
 
 const App = () => {
   return (
@@ -17,20 +16,18 @@ const App = () => {
       <Toaster position="top-center" reverseOrder={false} />
       <BrowserRouter>
         <AccountContextProvider>
-          <MarketplaceContextProvider>
-            <Routes>
-              <Route path="/" element={<LandingPage></LandingPage>} />
-              <Route
-                path="/dashboard"
-                element={<DashboardPage></DashboardPage>}
-              />
-              <Route path="/canvas" element={<CanvasPage></CanvasPage>} />
-              <Route
-                path="/marketplace"
-                element={<MarketplacePage></MarketplacePage>}
-              />
-            </Routes>
-          </MarketplaceContextProvider>
+          <Routes>
+            <Route path="/" element={<LandingPage></LandingPage>} />
+            <Route
+              path="/dashboard"
+              element={<DashboardPage></DashboardPage>}
+            />
+            <Route path="/canvas" element={<CanvasPage></CanvasPage>} />
+            <Route
+              path="/marketplace"
+              element={<MarketplacePage></MarketplacePage>}
+            />
+          </Routes>
         </AccountContextProvider>
       </BrowserRouter>
     </>
