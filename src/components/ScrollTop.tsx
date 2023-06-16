@@ -6,7 +6,7 @@ const ScrollToTopButton = () => {
   
     useEffect(() => {
       const toggleVisibility = () => {
-        if (window.pageYOffset > 50) {
+        if (window.pageYOffset > 400) {
           setIsVisible(true);
         } else {
           setIsVisible(false);
@@ -27,7 +27,7 @@ const ScrollToTopButton = () => {
   
     return (
       <button
-        className={`fixed bottom-4 right-4 p-4 rounded-full bg-pink-500 text-black shadow-lg transition-opacity duration-300 ${
+        className={`fixed bottom-4 right-4 p-4 rounded-full bg-accent text-black shadow-lg transition-opacity duration-300 ${
           isVisible ? 'opacity-100' : 'opacity-0'
         }`}
         onClick={scrollToTop}
