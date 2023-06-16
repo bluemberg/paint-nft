@@ -4,7 +4,7 @@ import CopyToClipboard from "copy-to-clipboard";
 
 import AccountContext from "../context/account-context";
 
-const THEMES = ["light", "dark", "cupcake", "cyberpunk"];
+const THEMES = ["light", "dark", "cupcake", "pastel", "cyberpunk"];
 
 export default function Header() {
   const accountContext = useContext(AccountContext);

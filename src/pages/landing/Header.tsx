@@ -1,6 +1,6 @@
 import React from 'react';
 
-const THEMES = ["light", "dark", "cupcake", "cyberpunk"];
+const THEMES = ["light", "dark", "cupcake", "pastel", "cyberpunk"];
 
 export default function Header() {
   const [theme, setTheme] = React.useState('cupcake');

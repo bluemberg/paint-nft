@@ -12,7 +12,7 @@ export default function Services() {
         </div>
 
         <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 lg:gap-8 xl:gap-10'>
-          <div className="card bg-base-200 transform-gpu transition-all duration-300 hover:-translate-y-2 hover:shadow-lg">
+          <div className="card bg-base-300 transform-gpu transition-all duration-300 hover:-translate-y-2 hover:shadow-lg">
             <div className="card-body items-center text-center gap-4">
               <i className='bi bi-brush text-4xl'></i>
               <h2 className="card-title">Canvas</h2>
@@ -22,7 +22,7 @@ export default function Services() {
             </div>
           </div>
 
-          <div className="card bg-base-200 transform-gpu transition-all duration-300 hover:-translate-y-2 hover:shadow-lg">
+          <div className="card bg-base-300 transform-gpu transition-all duration-300 hover:-translate-y-2 hover:shadow-lg">
             <div className="card-body items-center text-center gap-4">
               <i className='bi bi-shop-window text-4xl'></i>
               <h2 className="card-title">Marketplace</h2>
@@ -32,7 +32,7 @@ export default function Services() {
             </div>
           </div>
 
-          <div className="card bg-base-200 transform-gpu transition-all duration-300 hover:-translate-y-2 hover:shadow-lg">
+          <div className="card bg-base-300 transform-gpu transition-all duration-300 hover:-translate-y-2 hover:shadow-lg">
             <div className="card-body items-center text-center gap-4">
               <i className='bi bi bi-fingerprint text-4xl'></i>
               <h2 className="card-title">Security</h2>
