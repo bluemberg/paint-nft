@@ -15,15 +15,6 @@ PaintNFT is a decentralized FA2-compliant web platform that allows users to pain
 
 Users can access the PaintNFT website through this link: https://paint-nft.netlify.app/.
 
-### Cloning the repository
-
-If you want to build this project from source, enter the following commands.
-
-    $ git clone https://github.com/cs173-tesus/paint-nft.git paint-nft
-    $ cd paint-nft/
-    $ npm install
-    $ npm run start
-
 ## Smart Contracts
 
 PaintNFT uses two smart contracts deployed on Tezos' ghostnet.
