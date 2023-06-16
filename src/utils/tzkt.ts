@@ -3,6 +3,7 @@ import axios from "axios";
 import { bytes2Char } from "@taquito/utils";
 
 import { network, marketplaceAddr, tokenAddr } from "./wallet";
+import { convertToDedicatedUri } from "../pages/DashboardPage";
 
 export const fetchMarketplaceContractData = async () => {
   const res = await axios
@@ -27,7 +28,7 @@ export const fetchTokenContractData = async () => {
   const promises = res.map(async (key: any) => ({
     ...key.value,
     token_info: await axios
-      .get(bytes2Char(key.value.token_info[""]))
+      .get(convertToDedicatedUri(bytes2Char(key.value.token_info[""])))
       .then((res) => res.data),
   }));
   const tokenData = await Promise.all(promises);
