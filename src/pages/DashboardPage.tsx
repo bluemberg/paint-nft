@@ -76,8 +76,11 @@ const DashboardPage = () => {
           </div>
         </div>
       </section>
-
-      <h1 className="text-left text-6xl font-bold pl-24 pt-12">My NFTs</h1>
+      
+      <div className="text-left pl-24 pt-12">
+        <h1 className="text-6xl font-bold pb-5">My NFTs</h1>
+        <p className="text-lg"> Browse your personal NFTs here. Click on an NFT to see more details. </p>
+      </div>
 
       <div className="px-24">
         <div className="divider"></div>
@@ -123,7 +126,10 @@ const DashboardPage = () => {
         </div>
       </div>
 
-      <h1 className="text-left text-6xl font-bold pl-24 pt-12">Burnt NFTs</h1>
+      <div className="text-left pl-24 pt-12">
+        <h1 className="text-6xl font-bold pb-5">Burnt NFTs</h1>
+        <p className="text-lg"> Your burnt NFTs will appear here. </p>
+      </div>
 
       <div className="px-24">
         <div className="divider"></div>
