@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import BasePage from "./BasePage";
 import toast from "react-hot-toast";
+import img from "../img/db_bg.jpg";
 
 import { TokenMetadata } from "../components/MintModal";
 import { fetchCollectableNfts } from "../utils/tzkt";
@@ -51,7 +52,25 @@ const MarketplacePage = () => {
 
   return (
     <BasePage>
-      <h1 className="text-center text-4xl">Marketplace Page</h1>
+      <section>
+        <div
+          className="hero h-96 md:h-[400px] overflow-hidden bg-left-bottom "
+          style={{
+            backgroundImage: `url('${img}')`,
+          }}
+        >
+          <div className="hero-overlay bg-opacity-60 "></div>
+          <div className="hero-content text-center text-neutral-content">
+            <div className="max-w-md">
+              <a>
+                <i className="bi bi-easel2 text-8xl"></i>
+                <h1 className="mb-5 text-7xl font-bold pt-6">MARKETPLACE</h1>
+              </a>
+                {/* <button className="btn btn-primary">Get Started</button> */}
+            </div>
+          </div>
+          </div>
+      </section>
 
       {/* GRID OF NFTS */}
       <div className="flex justify-center items-center h-full px-4">
