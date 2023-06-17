@@ -132,66 +132,68 @@ const MarketplacePage = () => {
       {/* MODAL FOR EACH CARD */}
       {selectedNft && (
         <dialog id="my_modal_1" className="modal">
-          <form method="dialog" className="modal-box bg-base-200">
-            <figure>
-              <img
-                src={convertToDedicatedUri(selectedNft.token_info.artifactUri)}
-                onError={({ currentTarget }) => {
-                  currentTarget.onerror = null;
-                  currentTarget.src = selectedNft.token_info.artifactUri;
-                }}
-                alt={selectedNft.token_info.name}
-                className="h-64 w-full rounded-lg"
-              />
-            </figure>
+          <div className="">
+            <form method="dialog" className="modal-box bg-base-200">
+              <figure>
+                <img
+                  src={convertToDedicatedUri(selectedNft.token_info.artifactUri)}
+                  onError={({ currentTarget }) => {
+                    currentTarget.onerror = null;
+                    currentTarget.src = selectedNft.token_info.artifactUri;
+                  }}
+                  alt={selectedNft.token_info.name}
+                  className="h-64 w-full rounded-lg"
+                />
+              </figure>
 
-            <div className="card-body pt-5 pb-0 mb-0 px-0">
-              <h2 className="card-title">{selectedNft.token_info.name}</h2>
+              <div className="card-body pt-5 pb-0 mb-0 px-0">
+                <h2 className="card-title">{selectedNft.token_info.name}</h2>
 
-              <p className="break-words">
-                <b>Author:</b> {selectedNft.token_info.minter}
-              </p>
-              <p className="break-words">
-                <b>Description:</b> {selectedNft.token_info.description}
-              </p>
-              <p className="break-words">
-                <b>Creators:</b> {selectedNft.token_info.creators.join(", ")}
-              </p>
-              <p className="break-words">
-                <b>Tags:</b> {selectedNft.token_info.tags.join(", ")}
-              </p>
-              <p className="break-words">
-                <b>Price:</b> {parseInt(selectedNft.amount, 10) / 1000000} tez
-              </p>
-            </div>
-            <div className="modal-action">
-              {/* if there is a button in form, it will close the modal */}
-              <button className="btn btn-secondary">Close</button>
-              <button
-                className={
-                  "btn " +
-                  (selectedNft.token_info.minter === accountContext.address
-                    ? "btn-disabled"
-                    : "btn-primary")
-                }
-                onClick={() =>
-                  toast.promise(
-                    buyNft(
-                      parseInt(selectedNft.token_id),
-                      parseInt(selectedNft.amount) + 10_00000 // one 1 tez to the price for gas fee
-                    ),
-                    {
-                      loading: "Buying NFT.",
-                      success: "Successfully bought NFT!",
-                      error: "Error buying NFT.",
-                    }
-                  )
-                }
-              >
-                Buy
-              </button>
-            </div>
-          </form>
+                <p className="break-words">
+                  <b>Author:</b> {selectedNft.token_info.minter}
+                </p>
+                <p className="break-words">
+                  <b>Description:</b> {selectedNft.token_info.description}
+                </p>
+                <p className="break-words">
+                  <b>Creators:</b> {selectedNft.token_info.creators.join(", ")}
+                </p>
+                <p className="break-words">
+                  <b>Tags:</b> {selectedNft.token_info.tags.join(", ")}
+                </p>
+                <p className="break-words">
+                  <b>Price:</b> {parseInt(selectedNft.amount, 10) / 1000000} tez
+                </p>
+              </div>
+              <div className="modal-action mt-0 mb-0">
+                {/* if there is a button in form, it will close the modal */}
+                <button className="btn btn-secondary">Close</button>
+                <button
+                  className={
+                    "btn " +
+                    (selectedNft.token_info.minter === accountContext.address
+                      ? "btn-disabled"
+                      : "btn-primary")
+                  }
+                  onClick={() =>
+                    toast.promise(
+                      buyNft(
+                        parseInt(selectedNft.token_id),
+                        parseInt(selectedNft.amount) + 10_00000 // one 1 tez to the price for gas fee
+                      ),
+                      {
+                        loading: "Buying NFT.",
+                        success: "Successfully bought NFT!",
+                        error: "Error buying NFT.",
+                      }
+                    )
+                  }
+                >
+                  Buy
+                </button>
+              </div>
+            </form>
+          </div>
         </dialog>
       )}
     </BasePage>
